@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "poinpow",
+  "version": "${version}",
+
+  "name": "Poinpow",
+  "description": "A mod that blocks ads in minehut",
+  "authors": [
+    "udu3324"
+  ],
+  "contact": {
+    "homepage": "https://github.com/udu3324",
+    "sources": "https://github.com/udu3324/poinpow"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/poinpow/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.udu3324.poinpow.Poinpow"
+    ]
+  },
+  "mixins": [
+    "poinpow.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
