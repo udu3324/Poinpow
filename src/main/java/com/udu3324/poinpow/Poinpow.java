@@ -1,25 +1,39 @@
 package com.udu3324.poinpow;
 
+import com.mojang.brigadier.CommandDispatcher;
+import com.udu3324.poinpow.commands.PoinpowHelp;
+import com.udu3324.poinpow.utils.AutoSkipBarrier;
+import com.udu3324.poinpow.utils.BlockFreeCredits;
+import com.udu3324.poinpow.utils.BlockLobbyAds;
+import com.udu3324.poinpow.utils.BlockLobbyWelcome;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.text.Text;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.command.CommandRegistryAccess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static net.minecraft.server.command.CommandManager.*;
 
 public class Poinpow implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("poinpow");
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("udu3324 was here!!!");
+		LOGGER.info("udu3324 was here!!! | poinpow v" + Config.version);
 
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("foo")
-				.executes(context -> {
-					// For versions below 1.19, replace "Text.literal" with "new LiteralText".
-					context.getSource().sendMessage(Text.literal("Called /foo with no arguments"));
+		// register the commands
+		ClientCommandRegistrationCallback.EVENT.register(Poinpow::registerCommands);
 
-					return 1;
-				})));
+		// create a config
+		Config.create();
+	}
+
+	public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
+		PoinpowHelp.register(dispatcher);
+
+		AutoSkipBarrier.register(dispatcher);
+
+		BlockLobbyWelcome.register(dispatcher);
+		BlockLobbyAds.register(dispatcher);
+		BlockFreeCredits.register(dispatcher);
 	}
 }

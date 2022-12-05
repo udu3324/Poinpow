@@ -4,9 +4,10 @@
   "package": "com.udu3324.poinpow.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "WorldLoadedMixin"
   ],
   "client": [
-    "ExampleMixin"
+    "ChatMixin"
   ],
   "injectors": {
     "defaultRequire": 1

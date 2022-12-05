@@ -13,7 +13,7 @@
     "sources": "https://github.com/udu3324/poinpow"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/poinpow/icon.png",
 
   "environment": "*",
