@@ -20,7 +20,7 @@ public class BlockFreeCredits {
         // return false if toggled off
         if (!toggled) return false;
 
-        Pattern pattern = Pattern.compile("^\\[Minehut] [a-zA-Z0-9_]{1,16} just got free credits by voting via /vote$");
+        Pattern pattern = Pattern.compile("^\\[Minehut] [a-zA-Z0-9_.]{1,16} just got free credits by voting via /vote$");
 
         if (pattern.matcher(chat).find()) {
             Poinpow.LOGGER.info("Blocked: " + chat);

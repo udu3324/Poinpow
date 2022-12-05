@@ -1,9 +1,6 @@
 package com.udu3324.poinpow;
 
-import com.udu3324.poinpow.utils.AutoSkipBarrier;
-import com.udu3324.poinpow.utils.BlockFreeCredits;
-import com.udu3324.poinpow.utils.BlockLobbyAds;
-import com.udu3324.poinpow.utils.BlockLobbyWelcome;
+import com.udu3324.poinpow.utils.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 
@@ -111,6 +108,7 @@ public class Config {
                 w.write("# Poinpow v" + version + " by udu3324 | Config" + System.lineSeparator());
                 w.write("# Hey! I suggest you use the in-game commands instead of editing the config directly." + System.lineSeparator());
                 w.write(System.lineSeparator());
+                w.write(RemoveLobbyRanks.name + ": true" + System.lineSeparator());
                 w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
@@ -131,6 +129,8 @@ public class Config {
                     create();
                 } else {
                     //set values from config since its good
+                    RemoveLobbyRanks.toggled = Boolean.valueOf(getValueFromConfig(RemoveLobbyRanks.name));
+
                     AutoSkipBarrier.toggled = Boolean.valueOf(getValueFromConfig(AutoSkipBarrier.name));
 
                     BlockLobbyWelcome.toggled = Boolean.valueOf(getValueFromConfig(BlockLobbyWelcome.name));

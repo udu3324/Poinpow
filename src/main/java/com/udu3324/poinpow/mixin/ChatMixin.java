@@ -4,6 +4,7 @@ import com.udu3324.poinpow.commands.PoinpowHelp;
 import com.udu3324.poinpow.utils.BlockFreeCredits;
 import com.udu3324.poinpow.utils.BlockLobbyAds;
 import com.udu3324.poinpow.utils.BlockLobbyWelcome;
+import com.udu3324.poinpow.utils.RemoveLobbyRanks;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.MessageIndicator;
 import net.minecraft.network.message.MessageSignatureData;
@@ -26,5 +27,8 @@ public class ChatMixin {
         if (BlockLobbyAds.check(chat, ci)) return;
 
         if (BlockFreeCredits.check(chat, ci)) return;
+
+        //this should be left always at the bottom
+        RemoveLobbyRanks.check(chat, ci);
     }
 }

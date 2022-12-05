@@ -2,10 +2,7 @@ package com.udu3324.poinpow;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.udu3324.poinpow.commands.PoinpowHelp;
-import com.udu3324.poinpow.utils.AutoSkipBarrier;
-import com.udu3324.poinpow.utils.BlockFreeCredits;
-import com.udu3324.poinpow.utils.BlockLobbyAds;
-import com.udu3324.poinpow.utils.BlockLobbyWelcome;
+import com.udu3324.poinpow.utils.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -29,6 +26,8 @@ public class Poinpow implements ModInitializer {
 
 	public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
 		PoinpowHelp.register(dispatcher);
+
+		RemoveLobbyRanks.register(dispatcher);
 
 		AutoSkipBarrier.register(dispatcher);
 

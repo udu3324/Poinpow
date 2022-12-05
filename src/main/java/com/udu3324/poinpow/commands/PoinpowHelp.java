@@ -3,10 +3,7 @@ package com.udu3324.poinpow.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.udu3324.poinpow.Config;
-import com.udu3324.poinpow.utils.AutoSkipBarrier;
-import com.udu3324.poinpow.utils.BlockFreeCredits;
-import com.udu3324.poinpow.utils.BlockLobbyAds;
-import com.udu3324.poinpow.utils.BlockLobbyWelcome;
+import com.udu3324.poinpow.utils.*;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
@@ -26,10 +23,15 @@ public class PoinpowHelp {
         running = true;
 
         //credits + version
-        source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]\n").styled(style -> style
+        source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
                 .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324"))
                 .withColor(Formatting.GOLD)
                 .withBold(true)));
+
+        //remove lobby ranks
+        source.sendFeedback(Text.literal("/remove_lobby_ranks [toggled|" + RemoveLobbyRanks.toggled + "] (click)").styled(style -> style
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/remove_lobby_ranks " + !RemoveLobbyRanks.toggled))
+                .withColor(Formatting.DARK_PURPLE)));
 
         //auto skip barrier
         source.sendFeedback(Text.literal("/auto_skip_barrier [toggled|" + AutoSkipBarrier.toggled + "] (click)").styled(style -> style

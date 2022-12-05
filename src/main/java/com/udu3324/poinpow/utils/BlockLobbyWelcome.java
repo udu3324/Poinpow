@@ -29,7 +29,7 @@ public class BlockLobbyWelcome {
             blocked = true;
         }
 
-        Pattern pattern = Pattern.compile("^Welcome back, [a-zA-Z0-9_]{1,16}$");
+        Pattern pattern = Pattern.compile("^Welcome back, [a-zA-Z0-9_.]{1,16}$");
 
         if (pattern.matcher(chat).find()) {
             ignoreChat = true;
