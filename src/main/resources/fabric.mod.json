@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Poinpow",
-  "description": "A mod that blocks ads in minehut",
+  "description": "A mod that blocks ads on minehut and adds quality of life utilities.",
   "authors": [
     "udu3324"
   ],
