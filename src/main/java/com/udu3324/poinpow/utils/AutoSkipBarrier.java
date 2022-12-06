@@ -13,6 +13,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 
 public class AutoSkipBarrier {
     public static String name = "auto_skip_barrier";
+    public static String description = "Auto-skips the ads when joining free sub-servers/minehut.";
     public static Boolean toggled = true;
     public static void rename() {
         // return if toggled off (no need for bool)

@@ -14,6 +14,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 
 public class BlockLobbyWelcome {
     public static String name = "block_lobby_welcome";
+    public static String description = "Blocks the welcome message in lobby that is obstructive and could contain ads.";
     public static Boolean toggled = true;
 
     private static Boolean ignoreChat = false;

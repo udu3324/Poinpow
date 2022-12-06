@@ -33,6 +33,7 @@ public class Poinpow implements ModInitializer {
 
 		BlockLobbyWelcome.register(dispatcher);
 		BlockLobbyAds.register(dispatcher);
+		BlockMinehutAds.register(dispatcher);
 		BlockFreeCredits.register(dispatcher);
 	}
 }

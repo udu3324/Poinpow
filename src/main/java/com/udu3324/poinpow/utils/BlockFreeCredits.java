@@ -14,6 +14,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 
 public class BlockFreeCredits {
     public static String name = "block_free_credits";
+    public static String description = "Blocks minehut encouraging /vote when other players do it.";
     public static Boolean toggled = true;
 
     public static Boolean check(String chat, CallbackInfo ci) {

@@ -6,6 +6,7 @@ import com.udu3324.poinpow.Config;
 import com.udu3324.poinpow.utils.*;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -24,43 +25,53 @@ public class PoinpowHelp {
 
         //credits + version
         source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324"))
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Poinpow was made by udu3324. \nIf you have any feedback, click on this text, and go to poinpow repo to create a issue.")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow"))
                 .withColor(Formatting.GOLD)
                 .withBold(true)));
 
+        //discord
+        source.sendFeedback(Text.literal("Join this Discord Server to send feedback!").styled(style -> style
+                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/NXm9tJvyBT"))
+                .withColor(Formatting.BLUE)
+                .withUnderline(true)));
+
         //remove lobby ranks
-        source.sendFeedback(Text.literal("/remove_lobby_ranks [toggled|" + RemoveLobbyRanks.toggled + "] (click)").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/remove_lobby_ranks " + !RemoveLobbyRanks.toggled))
-                .withColor(Formatting.DARK_PURPLE)));
+        source.sendFeedback(Text.literal("/" + RemoveLobbyRanks.name + " [toggled|" + RemoveLobbyRanks.toggled + "]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(RemoveLobbyRanks.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + RemoveLobbyRanks.name + " " + !RemoveLobbyRanks.toggled))
+                .withColor(Formatting.DARK_GREEN)));
 
         //auto skip barrier
-        source.sendFeedback(Text.literal("/auto_skip_barrier [toggled|" + AutoSkipBarrier.toggled + "] (click)").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/auto_skip_barrier " + !AutoSkipBarrier.toggled))
-                .withColor(Formatting.BLUE)));
-        source.sendFeedback(Text.literal("Auto-skips transition ads when joining a server").styled(style -> style
-                .withColor(Formatting.DARK_GRAY)));
+        source.sendFeedback(Text.literal("/" + AutoSkipBarrier.name + " [toggled|" + AutoSkipBarrier.toggled + "]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(AutoSkipBarrier.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled))
+                .withColor(Formatting.DARK_GREEN)));
 
         //block lobby welcome
-        source.sendFeedback(Text.literal("/block_lobby_welcome [toggled|" + BlockLobbyWelcome.toggled + "] (click)").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/block_lobby_welcome " + !BlockLobbyWelcome.toggled))
+        source.sendFeedback(Text.literal("/" + BlockLobbyWelcome.name + " [toggled|" + BlockLobbyWelcome.toggled + "]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyWelcome.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + BlockLobbyWelcome.name + " " + !BlockLobbyWelcome.toggled))
                 .withColor(Formatting.DARK_GREEN)));
-        source.sendFeedback(Text.literal("Welcome back, Notch (next line) Sale! Sale!!!").styled(style -> style
-                .withColor(Formatting.DARK_GRAY)));
 
         //block lobby ads
-        source.sendFeedback(Text.literal("/block_lobby_ads [toggled|" + BlockLobbyAds.toggled + "] (click)").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/block_lobby_ads " + !BlockLobbyAds.toggled))
+        source.sendFeedback(Text.literal("/" + BlockLobbyAds.name + " [toggled|" + BlockLobbyAds.toggled + "]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyAds.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + BlockLobbyAds.name + " " + !BlockLobbyAds.toggled))
                 .withColor(Formatting.DARK_GREEN)));
-        source.sendFeedback(Text.literal("[AD] overlord35: /join fishwind fish!! fight!! build!!").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/join fishwind")) //lol
-                .withColor(Formatting.DARK_GRAY)));
+
+        //block minehut ads
+        source.sendFeedback(Text.literal("/" + BlockMinehutAds.name + " [toggled|" + BlockMinehutAds.toggled + "]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockMinehutAds.description + "\n\nClick to Toggle")))
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to Toggle\n" + BlockMinehutAds.description)))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + BlockMinehutAds.name + " " + !BlockMinehutAds.toggled))
+                .withColor(Formatting.DARK_GREEN)));
 
         //block free credits
-        source.sendFeedback(Text.literal("/block_free_credits [toggled|" + BlockFreeCredits.toggled + "] (click)").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/block_free_credits " + !BlockFreeCredits.toggled))
+        source.sendFeedback(Text.literal("/" + BlockFreeCredits.name + " [toggled|" + BlockFreeCredits.toggled + "]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockFreeCredits.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + BlockFreeCredits.name + " " + !BlockFreeCredits.toggled))
                 .withColor(Formatting.DARK_GREEN)));
-        source.sendFeedback(Text.literal("[Minehut] NintendoOS just got free credits by voting via /vote").styled(style -> style
-                .withColor(Formatting.DARK_GRAY)));
 
         running = false;
 

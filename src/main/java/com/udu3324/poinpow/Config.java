@@ -112,6 +112,7 @@ public class Config {
                 w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
+                w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
                 w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
                 w.close();
 
@@ -135,6 +136,7 @@ public class Config {
 
                     BlockLobbyWelcome.toggled = Boolean.valueOf(getValueFromConfig(BlockLobbyWelcome.name));
                     BlockLobbyAds.toggled = Boolean.valueOf(getValueFromConfig(BlockLobbyAds.name));
+                    BlockMinehutAds.toggled = Boolean.valueOf(getValueFromConfig(BlockMinehutAds.name));
                     BlockFreeCredits.toggled = Boolean.valueOf(getValueFromConfig(BlockFreeCredits.name));
                 }
             }

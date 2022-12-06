@@ -14,6 +14,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 
 public class BlockLobbyAds {
     public static String name = "block_lobby_ads";
+    public static String description = "Blocks ads made by players in the lobby.";
     public static Boolean toggled = true;
 
     public static Boolean check(String chat, CallbackInfo ci) {
