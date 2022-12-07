@@ -17,12 +17,15 @@ A fabric mod that blocks ads on minehut and adds quality of life utilities. All 
 - **BlockLobbyWelcome** - Blocks the lobby join message that sometimes has an ad in it
 
 Skipping ads automatically with AutoSkipBarrier (very fast)
+
 ![](https://cdn.discordapp.com/attachments/1046124049467719703/1049917303204098058/image.png)
 
 No ranks, no player ads, lobby chat with no other stuff
+
 ![](https://cdn.discordapp.com/attachments/1046124049467719703/1049914811057705020/image.png)
 
 /poinpow - interactable help command
+
 ![](https://cdn.discordapp.com/attachments/1046124049467719703/1049913865518981230/image.png)
 
 ## Mod Installation
@@ -33,7 +36,7 @@ No ranks, no player ads, lobby chat with no other stuff
 4. Launch Minecraft and enjoy the mod!
 5. (optional) Star the repo to support me :> You can join the [discord server](https://discord.gg/NXm9tJvyBT) to send feedback if you do not have a GitHub account
 
-## How to Compile Jar
+## How to Compile The Jar
 If you want to contribute to the code or make the jar yourself, you can follow the steps below.
 
 0. Make sure you have JDK 17 or above installed.
