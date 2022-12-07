@@ -5,8 +5,8 @@
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric%201.19.2-decea6?style=round)
 [![Discord Server](https://img.shields.io/badge/Official%20Discord%20Server-7289DA?style=round&logo=discord&logoColor=white)](https://discord.gg/NXm9tJvyBT)
 
-# Poinpow
-A fabric mod that blocks ads on minehut and adds quality of life utilities. All utilities/features in Poinpow are automatically on. Let me know on [discord](https://discord.gg/NXm9tJvyBT) if anything breaks! (or create an issue on GitHub)
+# Features of Poinpow
+All utilities/features in Poinpow are automatically on. If anything breaks, create a pull request or send it to me on [discord](https://discord.gg/NXm9tJvyBT).
 
 - **BlockMinehutAds** - Blocks ads from minehut that are sent in free servers
   Example: [Minehut] boost your server speed!!! go to this link!!!
