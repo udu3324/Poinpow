@@ -1,3 +1,5 @@
+![Mod Banner](https://github.com/udu3324/Poinpow/blob/master/src/main/resources/assets/poinpow/banner.png?raw=true)
+
 ![License](https://img.shields.io/github/license/udu3324/poinpow)
 ![Latest Releases](https://img.shields.io/github/v/release/udu3324/Poinpow)
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric%201.19.2-decea6?style=round)
