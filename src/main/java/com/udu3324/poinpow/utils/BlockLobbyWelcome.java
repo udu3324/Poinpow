@@ -22,6 +22,9 @@ public class BlockLobbyWelcome {
         // return false if toggled off
         if (!toggled) return false;
 
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return false;
+
         boolean blocked = false;
 
         if (ignoreChat) {

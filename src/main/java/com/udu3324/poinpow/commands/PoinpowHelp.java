@@ -31,7 +31,7 @@ public class PoinpowHelp {
                 .withBold(true)));
 
         //discord
-        source.sendFeedback(Text.literal("Join this Discord Server to send feedback!").styled(style -> style
+        source.sendFeedback(Text.literal("official discord").styled(style -> style
                 .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/NXm9tJvyBT"))
                 .withColor(Formatting.BLUE)
                 .withUnderline(true)));

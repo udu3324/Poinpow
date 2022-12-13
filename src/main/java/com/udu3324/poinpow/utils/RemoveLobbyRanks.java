@@ -25,6 +25,9 @@ public class RemoveLobbyRanks {
         // return false if toggled off
         if (!toggled) return;
 
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return;
+
         //ranked users joining
         Pattern join = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16} joined your lobby.$");
         if (join.matcher(chat).find()) {

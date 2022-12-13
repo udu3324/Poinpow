@@ -19,10 +19,13 @@ public class AutoSkipBarrier {
         // return if toggled off (no need for bool)
         if (!toggled) return;
 
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return;
+
         new Thread(() -> {
             try {
                 //todo better code where you don't need to wait a bit (caused because of too early mixin)
-                //i would shorten it down, but i have to account for slower computers
+                //I would shorten it down, but i have to account for slower computers
                 Thread.sleep(3500);
 
                 MinecraftClient client = MinecraftClient.getInstance();

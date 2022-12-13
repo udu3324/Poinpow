@@ -21,6 +21,9 @@ public class BlockLobbyAds {
         // return false if toggled off
         if (!toggled) return false;
 
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return false;
+
         Pattern pattern = Pattern.compile("^\\[AD]");
 
         if (pattern.matcher(chat).find()) {
