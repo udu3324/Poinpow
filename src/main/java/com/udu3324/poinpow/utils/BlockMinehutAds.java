@@ -27,7 +27,7 @@ public class BlockMinehutAds {
         Pattern pattern = Pattern.compile("^\\n\\n[Minehut].*\\n\\n$");
 
         if (pattern.matcher(chat).find()) {
-            Poinpow.LOGGER.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
         }
 

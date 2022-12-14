@@ -38,7 +38,7 @@ public class AutoSkipBarrier {
                 //slot 0 is usually where the barrier is
                 ItemStack items = client.player.getInventory().getStack(0);
                 if (items.getName().getString().equals("Right Click To Skip")) {
-                    Poinpow.LOGGER.info("Auto-skipping world transition");
+                    Poinpow.log.info("Auto-skipping world transition");
                     //select the slot
                     client.player.getInventory().selectedSlot = 0;
                     //right click

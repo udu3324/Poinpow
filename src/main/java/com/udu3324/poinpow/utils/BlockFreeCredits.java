@@ -27,7 +27,7 @@ public class BlockFreeCredits {
         Pattern pattern = Pattern.compile("^\\[Minehut] [a-zA-Z0-9_.]{1,16} just got free credits by voting via /vote$");
 
         if (pattern.matcher(chat).find()) {
-            Poinpow.LOGGER.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
         }
 

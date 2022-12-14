@@ -41,7 +41,7 @@ public class BlockLobbyWelcome {
         }
 
         if (blocked) {
-            Poinpow.LOGGER.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
         }
 

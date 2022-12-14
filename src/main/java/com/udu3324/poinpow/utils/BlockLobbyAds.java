@@ -27,7 +27,7 @@ public class BlockLobbyAds {
         Pattern pattern = Pattern.compile("^\\[AD]");
 
         if (pattern.matcher(chat).find()) {
-            Poinpow.LOGGER.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
         }
 

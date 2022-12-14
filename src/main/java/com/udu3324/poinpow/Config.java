@@ -46,7 +46,7 @@ public class Config {
 
             file.close();
         } catch (Exception e) {
-            Poinpow.LOGGER.info("Problem reading file.");
+            Poinpow.log.info("Problem reading file.");
         }
 
         return data;
@@ -90,15 +90,15 @@ public class Config {
 
             writer.close();
         } catch (Exception e) {
-            Poinpow.LOGGER.info("Problem writing file. " + e);
+            Poinpow.log.info("Problem writing file. " + e);
         }
     }
 
     public static void delete() {
         if (configFile.delete())
-            Poinpow.LOGGER.info("Config file has been successfully deleted.");
+            Poinpow.log.info("Config file has been successfully deleted.");
         else
-            Poinpow.LOGGER.info("Error! Config file couldn't be deleted!");
+            Poinpow.log.info("Error! Config file couldn't be deleted!");
     }
 
     public static void create() {
@@ -116,14 +116,14 @@ public class Config {
                 w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
                 w.close();
 
-                Poinpow.LOGGER.info("New config created.");
+                Poinpow.log.info("New config created.");
             } else {
                 //don't do anything if the config has alr been made
-                Poinpow.LOGGER.info("Config already exists.");
+                Poinpow.log.info("Config already exists.");
 
                 //delete config if bad version
                 if (!isLatestModVersion()) {
-                    Poinpow.LOGGER.info("Config is outdated!");
+                    Poinpow.log.info("Config is outdated!");
 
                     //delete and create the new one with the right version
                     delete();

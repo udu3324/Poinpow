@@ -31,7 +31,7 @@ public class RemoveLobbyRanks {
         //ranked users joining
         Pattern join = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16} joined your lobby.$");
         if (join.matcher(chat).find()) {
-            Poinpow.LOGGER.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
             return;
         }
@@ -39,7 +39,7 @@ public class RemoveLobbyRanks {
         //ranked users messaging
         Pattern rankedMsg = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16}: ");
         if (rankedMsg.matcher(chat).find()) {
-            Poinpow.LOGGER.info("Original: " + chat);
+            Poinpow.log.info("Original: " + chat);
             ci.cancel();
 
             //remove the rank prefix
