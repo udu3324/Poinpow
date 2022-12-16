@@ -17,6 +17,7 @@ public class BlockLobbyWelcome {
     public static String description = "Blocks the welcome message in lobby that is obstructive and could contain ads.";
     public static Boolean toggled = true;
 
+    public static int limit = 0;
     private static Boolean ignoreChat = false;
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
@@ -28,8 +29,15 @@ public class BlockLobbyWelcome {
         boolean blocked = false;
 
         if (ignoreChat) {
-            //lol
-            if (chat.contains("                                                          ") || chat.contains("https://go.minehut.com")) ignoreChat = false;
+            limit++;
+
+            //parsing failed
+            if (limit >= 6) {
+                ignoreChat = false;
+                limit = 0;
+            }
+
+            if (chat.contains("https://go.minehut.com")) ignoreChat = false;
             blocked = true;
         }
 
