@@ -18,7 +18,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 public class RemoveLobbyRanks {
     public static String name = "remove_lobby_ranks";
     public static String description = "Remove the ranks from players and generalize chat color.";
-    public static Boolean toggled = true;
+    public static Boolean toggled = false;
     private static Boolean running = true;
 
     public static void check(String chat, CallbackInfo ci) {
