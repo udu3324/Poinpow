@@ -30,7 +30,7 @@ Example of **Block Lobby Ads** (blocks /ad commands by player) It clears up chat
 
 ## 💾 How to Install
 0. Make sure you have **[Fabric](https://fabricmc.net/use/installer/)** installed in your mc launcher
-1. Download the latest release of **Poinpow** [here](https://github.com/udu3324/poinpow/releases/latest)
+1. Download the latest release of **Poinpow** [here](https://github.com/udu3324/poinpow/releases)
 2. Download the latest release of **Fabric API** [here](https://modrinth.com/mod/fabric-api/versions)
 3. Move the **two jars** you downloaded into the mods folder **(its usually .minecraft/mods)**
 4. Launch Minecraft and **enjoy the mod!**
