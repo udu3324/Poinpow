@@ -29,7 +29,7 @@ public class BlockLobbyWelcome {
 
         if (ignoreChat) {
             //lol
-            if (chat.equals("                                                          ")) ignoreChat = false;
+            if (chat.contains("                                                          ") || chat.contains("https://go.minehut.com")) ignoreChat = false;
             blocked = true;
         }
 

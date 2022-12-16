@@ -52,12 +52,17 @@ public class GitHubVersion {
         return null;
     }
 
+    private static boolean canSend = true;
     public static void check() {
         String latestVersion = get();
 
         if (latestVersion == null) return;
 
-        if (!latestVersion.equals(Config.version)) {
+        Version latest = new Version(get());
+        Version current = new Version(Config.version);
+
+        if (latest.compareTo(current) > 0 && canSend) {
+            canSend = false;
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Poinpow v" + latestVersion + " is now available. (click)").styled(style -> style
                     .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow/releases/latest"))
                     .withColor(Formatting.DARK_GRAY)
