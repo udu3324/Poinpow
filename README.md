@@ -18,15 +18,15 @@ Poinpow adds **utilities/features** that **make the player experience 102% bette
 
 Skipping ads **automatically** with AutoSkipBarrier **(very fast)**
 
-![](https://cdn.discordapp.com/attachments/1046124049467719703/1049917303204098058/image.png)
+![](https://cdn.modrinth.com/data/zmUzIoT1/images/aaa8cda2723de8979014cde22db46d34c8160553.png)
 
 Example of **Block Lobby Ads** (blocks /ad commands by player) It clears up chat so much!!
 
-![](https://media.discordapp.net/attachments/1046124049467719703/1053098519055056906/image.png?width=789&height=443)
+![](https://cdn.modrinth.com/data/zmUzIoT1/images/469c7fe6b0d73545fed47ea104dda8ca882c5607.png)
 
 /poinpow - **intractable/clickable** help command
 
-![](https://cdn.discordapp.com/attachments/1046124049467719703/1049913865518981230/image.png)
+![](https://cdn.modrinth.com/data/zmUzIoT1/images/619e7e67d0165ede30130a569f68d224d7d6e445.png)
 
 ## 💾 How to Install
 0. Make sure you have **[Fabric](https://fabricmc.net/use/installer/)** installed in your mc launcher
