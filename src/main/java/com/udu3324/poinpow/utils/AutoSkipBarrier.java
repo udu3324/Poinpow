@@ -24,26 +24,29 @@ public class AutoSkipBarrier {
 
         new Thread(() -> {
             try {
-                //todo better code where you don't need to wait a bit (caused because of too early mixin)
-                //I would shorten it down, but i have to account for slower computers
-                Thread.sleep(3500);
+                for (int i = 0; i < 3000; i += 10) {
+                    Thread.sleep(i);
 
-                MinecraftClient client = MinecraftClient.getInstance();
+                    MinecraftClient client = MinecraftClient.getInstance();
+                    // return if player hasn't loaded in it
+                    if (client.player == null) return;
 
-                assert client.player != null;
+                    // ignore creative mode
+                    if (client.player.getAbilities().creativeMode) break;
 
-                // ignore creative mode
-                if (client.player.getAbilities().creativeMode) return;
+                    ItemStack items = client.player.getInventory().getStack(0);
+                    if (items.getName().getString().equals("Right Click To Skip")) {
+                        Poinpow.log.info("Auto-skipping world transition");
 
-                //slot 0 is usually where the barrier is
-                ItemStack items = client.player.getInventory().getStack(0);
-                if (items.getName().getString().equals("Right Click To Skip")) {
-                    Poinpow.log.info("Auto-skipping world transition");
-                    //select the slot
-                    client.player.getInventory().selectedSlot = 0;
-                    //right click
-                    assert client.interactionManager != null;
-                    client.interactionManager.interactItem(client.player, client.player.getActiveHand());
+                        //select the slot
+                        client.player.getInventory().selectedSlot = 0;
+
+                        if (client.interactionManager == null) return;
+
+                        //right click
+                        client.interactionManager.interactItem(client.player, client.player.getActiveHand());
+                        break;
+                    }
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
