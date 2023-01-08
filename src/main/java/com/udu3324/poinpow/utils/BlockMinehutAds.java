@@ -24,7 +24,7 @@ public class BlockMinehutAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        Pattern pattern = Pattern.compile("^\\n\\n[Minehut].*\\n\\n$");
+        Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
 
         if (pattern.matcher(chat).find()) {
             Poinpow.log.info("Blocked: " + chat);
