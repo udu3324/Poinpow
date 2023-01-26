@@ -1,29 +1,23 @@
 package com.udu3324.poinpow.utils;
 
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.CommandDispatcher;
-import com.udu3324.poinpow.Config;
 import com.udu3324.poinpow.Poinpow;
-import com.udu3324.poinpow.commands.CmdUtils;
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
-
-import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 public class RemoveLobbyRanks {
     public static String name = "remove_lobby_ranks";
-    public static String description = "Remove the ranks from players and generalize chat color.";
-    public static Boolean toggled = false;
+    public static String description = "Remove ranks from players and generalize chat color in the MH lobby.";
+    public static AtomicBoolean toggled = new AtomicBoolean(false);
     private static Boolean running = true;
 
     public static void check(String chat, CallbackInfo ci) {
         // return false if toggled off
-        if (!toggled) return;
+        if (!toggled.get()) return;
 
         // return if not on minehut
         if (!Poinpow.onMinehut) return;
@@ -60,31 +54,5 @@ public class RemoveLobbyRanks {
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal(chat).styled(style -> style.withColor(Formatting.WHITE)));
             running = true;
         }
-    }
-
-    public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
-        dispatcher.register(literal(name)
-                .executes(ctx -> CmdUtils.getStatus(ctx.getSource(), name, toggled))
-                .then(literal("true")
-                        .executes(ctx -> on(ctx.getSource()))
-                )
-                .then(literal("false")
-                        .executes(ctx -> off(ctx.getSource()))
-                )
-        );
-    }
-
-    private static int on(FabricClientCommandSource source) {
-        source.sendFeedback(CmdUtils.getOutput(name, true));
-        Config.setValueFromConfig(name, "true");
-        toggled = true;
-        return Command.SINGLE_SUCCESS;
-    }
-
-    private static int off(FabricClientCommandSource source) {
-        source.sendFeedback(CmdUtils.getOutput(name, false));
-        Config.setValueFromConfig(name, "false");
-        toggled = false;
-        return Command.SINGLE_SUCCESS;
     }
 }
