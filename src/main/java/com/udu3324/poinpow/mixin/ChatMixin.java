@@ -1,6 +1,6 @@
 package com.udu3324.poinpow.mixin;
 
-import com.udu3324.poinpow.commands.PoinpowHelp;
+import com.udu3324.poinpow.commands.Commands;
 import com.udu3324.poinpow.utils.*;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.MessageIndicator;
@@ -17,7 +17,7 @@ public class ChatMixin {
         String chat = message.getString();
 
         //don't allow blockers to run while help command is running
-        if (PoinpowHelp.running) return;
+        if (Commands.running) return;
 
         if (BlockLobbyWelcome.check(chat, ci)) return;
 
