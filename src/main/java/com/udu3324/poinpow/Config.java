@@ -130,14 +130,12 @@ public class Config {
                     create();
                 } else {
                     //set values from config since its good
-                    RemoveLobbyRanks.toggled = Boolean.valueOf(getValueFromConfig(RemoveLobbyRanks.name));
-
-                    AutoSkipBarrier.toggled = Boolean.valueOf(getValueFromConfig(AutoSkipBarrier.name));
-
-                    BlockLobbyWelcome.toggled = Boolean.valueOf(getValueFromConfig(BlockLobbyWelcome.name));
-                    BlockLobbyAds.toggled = Boolean.valueOf(getValueFromConfig(BlockLobbyAds.name));
-                    BlockMinehutAds.toggled = Boolean.valueOf(getValueFromConfig(BlockMinehutAds.name));
-                    BlockFreeCredits.toggled = Boolean.valueOf(getValueFromConfig(BlockFreeCredits.name));
+                    RemoveLobbyRanks.toggled.set(Boolean.parseBoolean(getValueFromConfig(RemoveLobbyRanks.name)));
+                    AutoSkipBarrier.toggled.set(Boolean.parseBoolean(getValueFromConfig(AutoSkipBarrier.name)));
+                    BlockLobbyWelcome.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyWelcome.name)));
+                    BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
+                    BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));
+                    BlockFreeCredits.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockFreeCredits.name)));
                 }
             }
         } catch (IOException e) {

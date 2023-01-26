@@ -52,4 +52,4 @@ If you want to **contribute to the code** or **make the jar yourself**, you can 
 **No.** I read the rules, and it doesn't break any. Unless..... "Minehut reserves the right to suspend or refuse service for users and servers at any time at their discretion." bruh
 
 ## ♥ How to Contribute
-You can contribute by starring the repo, reporting issues, and creating pull requests. You can also send feedback in the [discord server](https://hatebin.com/ddgkzfaoqh).
+You can contribute by starring the repo, reporting issues, and creating pull requests. You can also send feedback in the [discord server](https://discord.gg/NXm9tJvyBT).
