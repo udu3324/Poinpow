@@ -114,6 +114,7 @@ public class Config {
                 w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
                 w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
                 w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
+                w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
                 w.close();
 
                 Poinpow.log.info("New config created.");
@@ -136,6 +137,7 @@ public class Config {
                     BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
                     BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));
                     BlockFreeCredits.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockFreeCredits.name)));
+                    BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
                 }
             }
         } catch (IOException e) {

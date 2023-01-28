@@ -25,14 +25,15 @@ public class BlockLobbyWelcome {
         if (ignoreChat) {
             limit++;
 
-            //parsing failed
-            if (limit >= 6) {
-                ignoreChat = false;
-                limit = 0;
-            }
-
             if (chat.contains("https://go.minehut.com")) ignoreChat = false;
             blocked = true;
+
+            //parsing failed (either it went over limit of 6, or a player sent a msg)
+            if (limit >= 6 || (chat.contains(":") && !chat.contains("http"))) {
+                ignoreChat = false;
+                limit = 0;
+                blocked = false;
+            }
         }
 
         Pattern pattern = Pattern.compile("^Welcome back, [a-zA-Z0-9_.]{1,16}$");
