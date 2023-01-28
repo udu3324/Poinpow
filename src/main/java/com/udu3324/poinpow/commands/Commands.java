@@ -51,6 +51,11 @@ public class Commands {
                         .executes(ctx -> description(ctx.getSource(), BlockFreeCredits.name, BlockFreeCredits.description, BlockFreeCredits.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockFreeCredits.name, BlockFreeCredits.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockFreeCredits.name, BlockFreeCredits.toggled, false))))
+
+                .then(literal(BlockLobbyMapAds.name)
+                        .executes(ctx -> description(ctx.getSource(), BlockLobbyMapAds.name, BlockLobbyMapAds.description, BlockLobbyMapAds.toggled))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockLobbyMapAds.name, BlockLobbyMapAds.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockLobbyMapAds.name, BlockLobbyMapAds.toggled, false))))
         );
     }
 
@@ -72,11 +77,12 @@ public class Commands {
         running = true;
 
         //show the command
-        source.sendFeedback(Text.literal("\n/poinpow " + name + " [toggled|" + toggled.get() + "]").styled(style -> style
+        source.sendFeedback(Text.literal("\n/poinpow " + name + " toggled|" + toggled.get()).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to Toggle!")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/poinpow " + name + " " + !toggled.get()))
                 .withColor(Formatting.GOLD)
                 .withUnderline(true)));
+
         //show the command's description
         source.sendFeedback(Text.literal(description).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to Toggle!")))
@@ -104,39 +110,52 @@ public class Commands {
         ));
 
         //remove lobby ranks
-        source.sendFeedback(Text.literal("/poinpow " + RemoveLobbyRanks.name + " [toggled|" + RemoveLobbyRanks.toggled + "]").styled(style -> style
+        source.sendFeedback(Text.literal("[toggled|" + RemoveLobbyRanks.toggled + "] " + RemoveLobbyRanks.name + " (click 2 toggle)").styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(RemoveLobbyRanks.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + RemoveLobbyRanks.name + " " + !RemoveLobbyRanks.toggled.get()))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + RemoveLobbyRanks.name + " " + !RemoveLobbyRanks.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
         ));
 
         //auto skip barrier
-        source.sendFeedback(Text.literal("/poinpow " + AutoSkipBarrier.name + " [toggled|" + AutoSkipBarrier.toggled + "]").styled(style -> style
+        source.sendFeedback(Text.literal("[toggled|" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(AutoSkipBarrier.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled.get()))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
         ));
 
         //block lobby welcome
-        source.sendFeedback(Text.literal("/poinpow " + BlockLobbyWelcome.name + " [toggled|" + BlockLobbyWelcome.toggled + "]").styled(style -> style
+        source.sendFeedback(Text.literal("[toggled|" + BlockLobbyWelcome.toggled + "] " + BlockLobbyWelcome.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyWelcome.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + BlockLobbyWelcome.name + " " + !BlockLobbyWelcome.toggled.get()))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyWelcome.name + " " + !BlockLobbyWelcome.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
         ));
 
         //block lobby ads
-        source.sendFeedback(Text.literal("/poinpow " + BlockLobbyAds.name + " [toggled|" + BlockLobbyAds.toggled + "]").styled(style -> style
+        source.sendFeedback(Text.literal("[toggled|" + BlockLobbyAds.toggled + "] " + BlockLobbyAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyAds.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + BlockLobbyAds.name + " " + !BlockLobbyAds.toggled.get()))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyAds.name + " " + !BlockLobbyAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
         ));
 
         //block minehut ads
-        source.sendFeedback(Text.literal("/poinpow " + BlockMinehutAds.name + " [toggled|" + BlockMinehutAds.toggled + "]").styled(style -> style
+        source.sendFeedback(Text.literal("[toggled|" + BlockMinehutAds.toggled + "] " + BlockMinehutAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockMinehutAds.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + BlockMinehutAds.name + " " + !BlockMinehutAds.toggled.get()))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockMinehutAds.name + " " + !BlockMinehutAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
         ));
 
         //block free credits
-        source.sendFeedback(Text.literal("/poinpow " + BlockFreeCredits.name + " [toggled|" + BlockFreeCredits.toggled + "]").styled(style -> style
+        source.sendFeedback(Text.literal("[toggled|" + BlockFreeCredits.toggled + "] " + BlockFreeCredits.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockFreeCredits.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + BlockFreeCredits.name + " " + !BlockFreeCredits.toggled.get()))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockFreeCredits.name + " " + !BlockFreeCredits.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //block lobby map ads
+        source.sendFeedback(Text.literal("[toggled|" + BlockLobbyMapAds.toggled + "] " + BlockLobbyMapAds.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyMapAds.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyMapAds.name + " " + !BlockLobbyMapAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
         ));
 
         running = false;
