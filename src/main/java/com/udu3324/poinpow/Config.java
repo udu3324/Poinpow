@@ -49,6 +49,14 @@ public class Config {
             Poinpow.log.info("Problem reading file.");
         }
 
+        //create a new config if data missing (bad)
+        if (data == null) {
+            Poinpow.log.info("bad!!! missing " + value);
+            delete();
+            create();
+            return "true";
+        }
+
         return data;
     }
 
