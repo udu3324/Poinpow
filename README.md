@@ -1,11 +1,12 @@
+
 ![Mod Banner](https://github.com/udu3324/Poinpow/blob/master/src/main/resources/assets/poinpow/banner.png?raw=true)
 
-![License](https://img.shields.io/github/license/udu3324/poinpow)
-![Latest Releases](https://img.shields.io/github/v/release/udu3324/Poinpow)
-![Github Downloads](https://img.shields.io/github/downloads/udu3324/poinpow/total)
-![Modrinth Downloads](https://modrinth-utils.vercel.app/api/badge/downloads?id=zmUzIoT1)
-![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric-decea6?style=round)
-![Requires](https://img.shields.io/badge/requires-Fabric%20API-dece5a?style=round)
+![License](https://img.shields.io/github/license/udu3324/poinpow)  
+![Latest Releases](https://img.shields.io/github/v/release/udu3324/Poinpow)  
+![Github Downloads](https://img.shields.io/github/downloads/udu3324/poinpow/total)  
+![Modrinth Downloads](https://modrinth-utils.vercel.app/api/badge/downloads?id=zmUzIoT1)  
+![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric-decea6?style=round)  
+![Requires](https://img.shields.io/badge/requires-Fabric%20API-dece5a?style=round)  
 [![Discord Server](https://img.shields.io/badge/Official%20Discord%20Server-7289DA?style=round&logo=discord&logoColor=white)](https://discord.gg/NXm9tJvyBT)
 
 # 📘 Features
@@ -17,14 +18,15 @@ Poinpow adds **utilities/features** that **make the player experience 102% bette
 - **RemoveLobbyRanks** - Removes ranks from players in lobby, and generalize colors
 - **BlockFreeCredits** - Blocks the vote messages encouraging free credits | `Example: [Minehut] PuppiesAreNice just got free credits by voting via /vote`
 - **BlockLobbyWelcome** - Blocks the lobby join message that sometimes has an ad in it
+- **BlockLobbyMapAds** - Removes the humungous map art that advertises things in lobby.
 
 Skipping ads **automatically** with AutoSkipBarrier **(very fast)**
 
 ![](https://cdn.modrinth.com/data/zmUzIoT1/images/aaa8cda2723de8979014cde22db46d34c8160553.png)
 
-Example of **Block Lobby Ads** (blocks /ad commands by player) It clears up chat so much!!
+Example of **Block Lobby Ads** (blocks /ad commands by player) and BlockLobbyMapAds. It clears up chat a lot and blocks those awful map ads.
 
-![](https://cdn.modrinth.com/data/zmUzIoT1/images/469c7fe6b0d73545fed47ea104dda8ca882c5607.png)
+![](https://cdn.modrinth.com/data/zmUzIoT1/images/c49843c5f4e7412df0c53670e94f3434eb4c4238.png)
 
 /poinpow - **intractable/clickable** help command
 
@@ -51,5 +53,5 @@ If you want to **contribute to the code** or **make the jar yourself**, you can 
 ## 🧾 Is it Against the Rules?
 **No.** I read the rules, and it doesn't break any. Unless..... "Minehut reserves the right to suspend or refuse service for users and servers at any time at their discretion." bruh
 
-## ♥ How to Contribute
+## 💚 How to Contribute
 You can contribute by starring the repo, reporting issues, and creating pull requests. You can also send feedback in the [discord server](https://discord.gg/NXm9tJvyBT).
