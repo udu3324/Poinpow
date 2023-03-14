@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/udu3324/poinpow)  
 ![Latest Releases](https://img.shields.io/github/v/release/udu3324/Poinpow)  
 ![Github Downloads](https://img.shields.io/github/downloads/udu3324/poinpow/total)  
-![Modrinth Downloads](https://modrinth-utils.vercel.app/api/badge/downloads?id=zmUzIoT1)  
+![Modrinth Downloads](https://img.shields.io/badge/dynamic/json?color=1bd96a&label=modrinth&query=downloads&suffix=%20downloads&url=https%3A%2F%2Fapi.modrinth.com%2Fv2%2Fproject%2Fpoinpow)  
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric-decea6?style=round)  
 ![Requires](https://img.shields.io/badge/requires-Fabric%20API-dece5a?style=round)  
 [![Discord Server](https://img.shields.io/badge/Official%20Discord%20Server-7289DA?style=round&logo=discord&logoColor=white)](https://discord.gg/NXm9tJvyBT)
