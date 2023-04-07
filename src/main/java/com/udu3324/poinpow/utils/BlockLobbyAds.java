@@ -18,9 +18,9 @@ public class BlockLobbyAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        Pattern pattern = Pattern.compile("^\\[AD]");
+        Pattern pattern = Pattern.compile("\\[AD]");
 
-        if (pattern.matcher(chat).find()) {
+        if (pattern.matcher(chat).find() || chat.contains(": /join")) {
             Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
         }
