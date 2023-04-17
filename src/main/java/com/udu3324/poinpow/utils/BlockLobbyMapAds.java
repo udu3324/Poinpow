@@ -12,7 +12,6 @@ import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 
 public class BlockLobbyMapAds {
     public static String name = "block_lobby_map_ads";
@@ -31,9 +30,12 @@ public class BlockLobbyMapAds {
 
         // check for scoreboard
         Scoreboard scoreboard = MinecraftClient.getInstance().player.getScoreboard();
-        ArrayList<String> objectivesList = scoreboard.getObjectives().stream().map(ScoreboardObjective::getName).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<String> scores = new ArrayList<>();
+        for (ScoreboardObjective objective : scoreboard.getObjectives()) {
+            scores.add(objective.getDisplayName().toString());
+        }
 
-        if (!objectivesList.contains("Minehut")) return;
+        if (!scores.toString().toLowerCase().contains("minehut")) return;
 
         // remove if item frame has a map in it
         ItemFrameEntity itemFrame = (ItemFrameEntity) entity;
