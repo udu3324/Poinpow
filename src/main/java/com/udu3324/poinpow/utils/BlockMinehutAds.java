@@ -18,13 +18,15 @@ public class BlockMinehutAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
+        Pattern pattern1 = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
+        Pattern pattern2 = Pattern.compile("^Welcome to Minehut! Start your Free Minecraft server now!");
 
-        if (pattern.matcher(chat).find()) {
+        if (pattern1.matcher(chat).find() || pattern2.matcher(chat).find()) {
             Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
-        }
 
-        return pattern.matcher(chat).find();
+            return true;
+        }
+        return false;
     }
 }
