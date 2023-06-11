@@ -26,37 +26,16 @@ public class AutoSkipBarrier {
                     // return if player hasn't loaded in it
                     if (client.player == null) return;
 
-                    // ignore creative mode
-                    if (client.player.getAbilities().creativeMode) break;
-
-                    ItemStack items = client.player.getInventory().getStack(0);
-                    if (items.getName().getString().equals("Right Click To Skip")) {
-                        Poinpow.log.info("Auto-skipping world transition");
-
-                        //select the slot
-                        client.player.getInventory().selectedSlot = 0;
-
-                        if (client.interactionManager == null) return;
-
-                        //right click
-                        client.interactionManager.interactItem(client.player, client.player.getActiveHand());
-                        for (int e = 0; e < 1500; e += 10) {
-                            Thread.sleep(i);
-
-                            //break if item is gone
-                            items = client.player.getInventory().getStack(0);
-                            if (!items.getName().getString().equals("Right Click To Skip")) break;
-
-                            //if (client.player == null) break;
-
-                            if (client.player.getInventory().selectedSlot == 0)
-                                client.player.getInventory().selectedSlot = 1;
-                            else
-                                client.player.getInventory().selectedSlot = 0;
-
+                    ItemStack items;
+                    for (int itemiterator = 0; itemiterator < 9; itemiterator++) {
+                        items = client.player.getInventory().getStack(itemiterator);
+                        if (items.getName().getString().equals("Right click to continue")) {
+                            // set item slot to wherever a item with this name is
+                            client.player.getInventory().selectedSlot = itemiterator;
+                            
+                            //send right click
                             client.interactionManager.interactItem(client.player, client.player.getActiveHand());
                         }
-                        break;
                     }
                 }
             } catch (InterruptedException e) {
