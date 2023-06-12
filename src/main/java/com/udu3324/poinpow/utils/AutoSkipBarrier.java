@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+// ty for contributing https://github.com/DutchO7 !!
 public class AutoSkipBarrier {
     public static String name = "auto_skip_barrier";
     public static String description = "Auto-skips the ads when joining free sub-servers/minehut.";
@@ -19,24 +20,32 @@ public class AutoSkipBarrier {
 
         new Thread(() -> {
             try {
+                int tries = 0;
                 for (int i = 0; i < 3000; i += 10) {
                     Thread.sleep(i);
 
                     MinecraftClient client = MinecraftClient.getInstance();
+
                     // return if player hasn't loaded in it
                     if (client.player == null) return;
 
+                    if (client.interactionManager == null) return;
+
                     ItemStack items;
-                    for (int itemiterator = 0; itemiterator < 9; itemiterator++) {
-                        items = client.player.getInventory().getStack(itemiterator);
+                    for (int itemIterator = 0; itemIterator < 9; itemIterator++) {
+                        items = client.player.getInventory().getStack(itemIterator);
                         if (items.getName().getString().equals("Right click to continue")) {
                             // set item slot to wherever a item with this name is
-                            client.player.getInventory().selectedSlot = itemiterator;
+                            client.player.getInventory().selectedSlot = itemIterator;
                             
                             //send right click
                             client.interactionManager.interactItem(client.player, client.player.getActiveHand());
+                        } else {
+                            tries++;
                         }
                     }
+
+                    if (tries > 90) break;
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
