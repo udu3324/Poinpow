@@ -11,14 +11,14 @@ public class BlockLobbyAds {
     public static String description = "Blocks ads made by players in the lobby.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
+    final static Pattern pattern = Pattern.compile("\\[AD]");
+
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return false;
 
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
-
-        Pattern pattern = Pattern.compile("\\[AD]");
 
         if (pattern.matcher(chat).find() || chat.contains(": /join")) {
             Poinpow.log.info("Blocked: " + chat);

@@ -13,6 +13,9 @@ public class BlockLobbyWelcome {
 
     public static int limit = 0;
     private static Boolean ignoreChat = false;
+
+    final static Pattern pattern = Pattern.compile("^Welcome back, [a-zA-Z0-9_.]{1,16}$");
+
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return false;
@@ -35,8 +38,6 @@ public class BlockLobbyWelcome {
                 blocked = false;
             }
         }
-
-        Pattern pattern = Pattern.compile("^Welcome back, [a-zA-Z0-9_.]{1,16}$");
 
         if (pattern.matcher(chat).find()) {
             ignoreChat = true;

@@ -15,6 +15,10 @@ public class RemoveLobbyRanks {
     public static AtomicBoolean toggled = new AtomicBoolean(false);
     private static Boolean running = true;
 
+    final static Pattern join = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16} joined your lobby.$");
+    final static Pattern rankedMsg = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16}: ");
+    final static Pattern normalMsg = Pattern.compile("^[a-zA-Z0-9_.]{1,16}: ");
+
     public static void check(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return;
@@ -23,7 +27,6 @@ public class RemoveLobbyRanks {
         if (!Poinpow.onMinehut) return;
 
         //ranked users joining
-        Pattern join = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16} joined your lobby.$");
         if (join.matcher(chat).find()) {
             Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
@@ -31,7 +34,6 @@ public class RemoveLobbyRanks {
         }
 
         //ranked users messaging
-        Pattern rankedMsg = Pattern.compile("^(\\[(PRO|VIP|LEGEND|PATRON)] )[a-zA-Z0-9_.]{1,16}: ");
         if (rankedMsg.matcher(chat).find()) {
             Poinpow.log.info("Original: " + chat);
             ci.cancel();
@@ -46,7 +48,6 @@ public class RemoveLobbyRanks {
         }
 
         //normal users chatting
-        Pattern normalMsg = Pattern.compile("^[a-zA-Z0-9_.]{1,16}: ");
         if (normalMsg.matcher(chat).find() && running) {
             ci.cancel();
 
