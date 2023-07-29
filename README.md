@@ -13,9 +13,9 @@
 Poinpow adds **utilities/features** that **make the player experience 102% better**. If you catch a bug, create an issue in the repo or send it to me in this [discord server](https://discord.gg/NXm9tJvyBT).
 
 - **BlockMinehutAds** - Blocks ads from minehut that are sent in free servers | `Example: [Minehut] boost your server speed!!! go to this link!!!`
+- **ChatPhraseFilter** - Store a user made list of regex and filter lobby`Example: /poinpow chat_phrase_filter "join my server"`
 - **BlockLobbyAds** - Blocks player made ads in the lobby | `Example: [Ad] NintendoOS: /join fishwind join my server for op yes`
 - **AutoSkipBarrier** - Automatically skip the ads when joining minehut or free servers
-- **RemoveLobbyRanks** - Removes ranks from players in lobby, and generalize colors
 - **BlockFreeCredits** - Blocks the vote messages encouraging free credits | `Example: [Minehut] PuppiesAreNice just got free credits by voting via /vote`
 - **BlockLobbyWelcome** - Blocks the lobby join message that sometimes has an ad in it
 - **BlockLobbyMapAds** - Removes the humungous map art that advertises things in lobby.

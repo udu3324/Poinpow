@@ -11,14 +11,14 @@ public class BlockMinehutAds {
     public static String description = "Blocks ads made by minehut that sometimes shows up in free sub-servers.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
+    final static Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
+
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return false;
 
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
-
-        Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
 
         if (pattern.matcher(chat).find()) {
             Poinpow.log.info("Blocked: " + chat);
