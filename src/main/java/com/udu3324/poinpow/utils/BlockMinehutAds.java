@@ -11,6 +11,8 @@ public class BlockMinehutAds {
     public static String description = "Blocks ads made by minehut that show up before joining servers & ads in free sub-servers.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
+    final static Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
+
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return false;
@@ -18,10 +20,7 @@ public class BlockMinehutAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        Pattern pattern1 = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
-        Pattern pattern2 = Pattern.compile("^Welcome to Minehut! Start your Free Minecraft server now!");
-
-        if (pattern1.matcher(chat).find() || pattern2.matcher(chat).find()) {
+        if (pattern.matcher(chat).find()) {
             Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
 

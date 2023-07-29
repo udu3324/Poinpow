@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/udu3324/poinpow)  
 ![Latest Releases](https://img.shields.io/github/v/release/udu3324/Poinpow)  
 ![Github Downloads](https://img.shields.io/github/downloads/udu3324/poinpow/total)  
-![Modrinth Downloads](https://modrinth-utils.vercel.app/api/badge/downloads?id=zmUzIoT1)  
+![Modrinth Downloads](https://img.shields.io/badge/dynamic/json?color=1bd96a&label=modrinth&query=downloads&suffix=%20downloads&url=https%3A%2F%2Fapi.modrinth.com%2Fv2%2Fproject%2Fpoinpow)  
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric-decea6?style=round)  
 ![Requires](https://img.shields.io/badge/requires-Fabric%20API-dece5a?style=round)  
 [![Discord Server](https://img.shields.io/badge/Official%20Discord%20Server-7289DA?style=round&logo=discord&logoColor=white)](https://discord.gg/NXm9tJvyBT)
@@ -13,9 +13,9 @@
 Poinpow adds **utilities/features** that **make the player experience 102% better**. If you catch a bug, create an issue in the repo or send it to me in this [discord server](https://discord.gg/NXm9tJvyBT).
 
 - **BlockMinehutAds** - Blocks ads from minehut that are sent in free servers | `Example: [Minehut] boost your server speed!!! go to this link!!!`
+- **ChatPhraseFilter** - Store a user made list of regex and filter lobby`Example: /poinpow chat_phrase_filter "join my server"`
 - **BlockLobbyAds** - Blocks player made ads in the lobby | `Example: [Ad] NintendoOS: /join fishwind join my server for op yes`
 - **AutoSkipBarrier** - Automatically skip the ads when joining minehut or free servers
-- **RemoveLobbyRanks** - Removes ranks from players in lobby, and generalize colors
 - **BlockFreeCredits** - Blocks the vote messages encouraging free credits | `Example: [Minehut] PuppiesAreNice just got free credits by voting via /vote`
 - **BlockLobbyWelcome** - Blocks the lobby join message that sometimes has an ad in it
 - **BlockLobbyMapAds** - Removes the humungous map art that advertises things in lobby.

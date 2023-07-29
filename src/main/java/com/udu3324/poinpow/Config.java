@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Config {
     public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toString() + File.separator + "poinpow.cfg");
@@ -63,16 +64,12 @@ public class Config {
     //example: setValueFromConfig("api-key", "thisIsTheApiKey")
     public static void setValueFromConfig(String value, String data) {
         try {
-            // get the lines in the config (arraylist)
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(configFile));
+            ArrayList<String> lines = getConfig();
 
-            ArrayList<String> lines = new ArrayList<>();
-
-            String l;
-            while ((l = bufferedReader.readLine()) != null) {
-                lines.add(l);
+            if (lines == null) {
+                System.out.println("Problem reading poinpow config!!! Error!!!");
+                return;
             }
-            bufferedReader.close();
 
             // modify the values in the config
             for (int i = 0; i < lines.size(); i++) {
@@ -84,6 +81,7 @@ public class Config {
                     if (value.equals(line.substring(0, line.indexOf(":")))) {
                         // it's the line being modified
                         lines.set(i, value + ": " + data);
+                        break;
                     }
                 }
             }
@@ -102,6 +100,106 @@ public class Config {
         }
     }
 
+    //
+    public static ArrayList<Pattern> getListOfRegex() {
+        try {
+            ArrayList<String> lines = getConfig();
+
+            if (lines == null) {
+                System.out.println("Problem reading poinpow config!!! Error!!!");
+                return null;
+            }
+
+            //config is out of date! reset
+            if (!lines.contains("# Each line below is regex for ChatPhraseFilter to use.")) {
+                Poinpow.log.info("bad!!! missing regex for chat phrase filter");
+                delete();
+                create();
+                return null;
+            }
+
+            ArrayList<Pattern> linesOfRegex = new ArrayList<>();
+
+            //after the regex comment, put everything else in the array
+            int commentLocation = lines.indexOf("# Each line below is regex for ChatPhraseFilter to use.") + 1;
+            for (int i = commentLocation; i < lines.size(); i++) {
+                if (!lines.get(i).isEmpty()) {
+                    String edit = lines.get(i).replace("\n", "");
+                    linesOfRegex.add(Pattern.compile(edit));
+                }
+            }
+
+            if (linesOfRegex.size() == 0) return null;
+
+            return linesOfRegex;
+        } catch (Exception e) {
+            Poinpow.log.info("Problem reading file. " + e);
+            return null;
+        }
+    }
+
+    public static void addRegex(String regex) {
+        try {
+            FileWriter writer = new FileWriter(configFile, true);
+
+            writer.write("\n" + regex);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeRegex(String regex) {
+        try {
+            ArrayList<String> lines = getConfig();
+
+            if (lines == null) {
+                System.out.println("Problem reading poinpow config!!! Error!!!");
+                return;
+            }
+
+            // modify the values in the config
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).equals(regex)) {
+                    lines.remove(i);
+                    break;
+                }
+            }
+
+            //overwrite the rest
+            FileWriter writer = new FileWriter(configFile);
+
+            //write array back to new file
+            for (String line : lines) {
+                writer.write(line + System.lineSeparator());
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //get the lines in the config
+    private static ArrayList<String> getConfig() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(configFile));
+            ArrayList<String> lines = new ArrayList<>();
+
+            String l;
+
+            while ((l = bufferedReader.readLine()) != null) {
+                lines.add(l);
+            }
+            bufferedReader.close();
+
+            return lines;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static void delete() {
         if (configFile.delete())
             Poinpow.log.info("Config file has been successfully deleted.");
@@ -116,13 +214,16 @@ public class Config {
                 w.write("# Poinpow v" + version + " by udu3324 | Config" + System.lineSeparator());
                 w.write("# Hey! I suggest you use the in-game commands instead of editing the config directly." + System.lineSeparator());
                 w.write(System.lineSeparator());
-                w.write(RemoveLobbyRanks.name + ": false" + System.lineSeparator());
                 w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
+                w.write(ChatPhraseFilter.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
                 w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
                 w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
+                w.write(System.lineSeparator());
+                w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
+                w.write("/join");
                 w.close();
 
                 Poinpow.log.info("New config created.");
@@ -139,8 +240,8 @@ public class Config {
                     create();
                 } else {
                     //set values from config since its good
-                    RemoveLobbyRanks.toggled.set(Boolean.parseBoolean(getValueFromConfig(RemoveLobbyRanks.name)));
                     AutoSkipBarrier.toggled.set(Boolean.parseBoolean(getValueFromConfig(AutoSkipBarrier.name)));
+                    ChatPhraseFilter.toggled.set(Boolean.parseBoolean(getValueFromConfig(ChatPhraseFilter.name)));
                     BlockLobbyWelcome.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyWelcome.name)));
                     BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
                     BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));

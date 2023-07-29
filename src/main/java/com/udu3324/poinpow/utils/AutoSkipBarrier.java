@@ -30,7 +30,7 @@ public class AutoSkipBarrier {
                     if (client.player == null) return;
 
                     if (client.interactionManager == null) return;
-
+                  
                     ItemStack items;
                     for (int itemIterator = 0; itemIterator < 9; itemIterator++) {
                         items = client.player.getInventory().getStack(itemIterator);

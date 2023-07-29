@@ -2,6 +2,7 @@ package com.udu3324.poinpow.commands;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.udu3324.poinpow.Config;
 import com.udu3324.poinpow.utils.*;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -12,6 +13,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 public class Commands {
@@ -22,15 +24,18 @@ public class Commands {
         dispatcher.register(literal("poinpow")
                 .executes(ctx -> help(ctx.getSource()))
 
-                .then(literal(RemoveLobbyRanks.name)
-                        .executes(ctx -> description(ctx.getSource(), RemoveLobbyRanks.name, RemoveLobbyRanks.description, RemoveLobbyRanks.toggled))
-                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), RemoveLobbyRanks.name, RemoveLobbyRanks.toggled, true)))
-                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), RemoveLobbyRanks.name, RemoveLobbyRanks.toggled, false))))
-
                 .then(literal(AutoSkipBarrier.name)
                         .executes(ctx -> description(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.description, AutoSkipBarrier.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.toggled, false))))
+
+                .then(literal(ChatPhraseFilter.name)
+                        .executes(ctx -> description(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.description, ChatPhraseFilter.toggled))
+                        .then(literal("add").then(argument("regex", StringArgumentType.string()).executes(ChatPhraseFilter::add)))
+                        .then(literal("remove").then(argument("regex", StringArgumentType.string()).executes(ChatPhraseFilter::remove)))
+                        .then(literal("list").executes(ctx -> ChatPhraseFilter.list(ctx.getSource())))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.toggled, false))))
 
                 .then(literal(BlockLobbyWelcome.name)
                         .executes(ctx -> description(ctx.getSource(), BlockLobbyWelcome.name, BlockLobbyWelcome.description, BlockLobbyWelcome.toggled))
@@ -109,17 +114,17 @@ public class Commands {
                 .withUnderline(true)
         ));
 
-        //remove lobby ranks
-        source.sendFeedback(Text.literal("[toggled|" + RemoveLobbyRanks.toggled + "] " + RemoveLobbyRanks.name + " (click 2 toggle)").styled(style -> style
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(RemoveLobbyRanks.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + RemoveLobbyRanks.name + " " + !RemoveLobbyRanks.toggled.get()))
-                .withColor(Formatting.DARK_GRAY)
-        ));
-
         //auto skip barrier
         source.sendFeedback(Text.literal("[toggled|" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(AutoSkipBarrier.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //auto skip barrier
+        source.sendFeedback(Text.literal("[toggled|" + ChatPhraseFilter.toggled + "] " + ChatPhraseFilter.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ChatPhraseFilter.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ChatPhraseFilter.name + " " + !ChatPhraseFilter.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
