@@ -35,7 +35,6 @@ public class ChatPhraseFilter {
 
         // return if there's nothing in the list
         if (list == null || list.size() == 0) {
-            System.out.println("!!!!!!!!!! nothing in list");
             return;
         }
 
