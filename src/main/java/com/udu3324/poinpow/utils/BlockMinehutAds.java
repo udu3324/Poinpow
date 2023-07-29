@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class BlockMinehutAds {
     public static String name = "block_minehut_ads";
-    public static String description = "Blocks ads made by minehut that sometimes shows up in free sub-servers.";
+    public static String description = "Blocks ads made by minehut that show up before joining servers & ads in free sub-servers.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
     final static Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
@@ -23,8 +23,9 @@ public class BlockMinehutAds {
         if (pattern.matcher(chat).find()) {
             Poinpow.log.info("Blocked: " + chat);
             ci.cancel();
-        }
 
-        return pattern.matcher(chat).find();
+            return true;
+        }
+        return false;
     }
 }
