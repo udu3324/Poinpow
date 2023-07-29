@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class Config {
@@ -65,16 +64,12 @@ public class Config {
     //example: setValueFromConfig("api-key", "thisIsTheApiKey")
     public static void setValueFromConfig(String value, String data) {
         try {
-            // get the lines in the config (arraylist)
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(configFile));
+            ArrayList<String> lines = getConfig();
 
-            ArrayList<String> lines = new ArrayList<>();
-
-            String l;
-            while ((l = bufferedReader.readLine()) != null) {
-                lines.add(l);
+            if (lines == null) {
+                System.out.println("Problem reading poinpow config!!! Error!!!");
+                return;
             }
-            bufferedReader.close();
 
             // modify the values in the config
             for (int i = 0; i < lines.size(); i++) {
@@ -108,16 +103,12 @@ public class Config {
     //
     public static ArrayList<Pattern> getListOfRegex() {
         try {
-            // get the lines in the config (arraylist)
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(configFile));
+            ArrayList<String> lines = getConfig();
 
-            ArrayList<String> lines = new ArrayList<>();
-
-            String l;
-            while ((l = bufferedReader.readLine()) != null) {
-                lines.add(l);
+            if (lines == null) {
+                System.out.println("Problem reading poinpow config!!! Error!!!");
+                return null;
             }
-            bufferedReader.close();
 
             //config is out of date! reset
             if (!lines.contains("# Each line below is regex for ChatPhraseFilter to use.")) {
@@ -129,11 +120,13 @@ public class Config {
 
             ArrayList<Pattern> linesOfRegex = new ArrayList<>();
 
-            //after the # regex comment, put everything else in the array
+            //after the regex comment, put everything else in the array
             int commentLocation = lines.indexOf("# Each line below is regex for ChatPhraseFilter to use.") + 1;
             for (int i = commentLocation; i < lines.size(); i++) {
-                if (!lines.get(i).isEmpty())
-                    linesOfRegex.add(Pattern.compile(lines.get(i)));
+                if (!lines.get(i).isEmpty()) {
+                    String edit = lines.get(i).replace("\n", "");
+                    linesOfRegex.add(Pattern.compile(edit));
+                }
             }
 
             if (linesOfRegex.size() == 0) return null;
@@ -149,10 +142,61 @@ public class Config {
         try {
             FileWriter writer = new FileWriter(configFile, true);
 
-            writer.write(regex);
+            writer.write("\n" + regex);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void removeRegex(String regex) {
+        try {
+            ArrayList<String> lines = getConfig();
+
+            if (lines == null) {
+                System.out.println("Problem reading poinpow config!!! Error!!!");
+                return;
+            }
+
+            // modify the values in the config
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).equals(regex)) {
+                    lines.remove(i);
+                    break;
+                }
+            }
+
+            //overwrite the rest
+            FileWriter writer = new FileWriter(configFile);
+
+            //write array back to new file
+            for (String line : lines) {
+                writer.write(line + System.lineSeparator());
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //get the lines in the config
+    private static ArrayList<String> getConfig() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(configFile));
+            ArrayList<String> lines = new ArrayList<>();
+
+            String l;
+
+            while ((l = bufferedReader.readLine()) != null) {
+                lines.add(l);
+            }
+            bufferedReader.close();
+
+            return lines;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

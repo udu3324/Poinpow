@@ -2,6 +2,7 @@ package com.udu3324.poinpow.commands;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.udu3324.poinpow.Config;
 import com.udu3324.poinpow.utils.*;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -12,6 +13,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 public class Commands {
@@ -29,8 +31,9 @@ public class Commands {
 
                 .then(literal(ChatPhraseFilter.name)
                         .executes(ctx -> description(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.description, ChatPhraseFilter.toggled))
-                        .then(literal("add").executes(ctx -> ChatPhraseFilter.add(ctx.getSource())))
-                        .then(literal("remove").executes(ctx -> ChatPhraseFilter.remove(ctx.getSource())))
+                        .then(literal("add").then(argument("regex", StringArgumentType.string()).executes(ChatPhraseFilter::add)))
+                        .then(literal("remove").then(argument("regex", StringArgumentType.string()).executes(ChatPhraseFilter::remove)))
+                        .then(literal("list").executes(ctx -> ChatPhraseFilter.list(ctx.getSource())))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.toggled, false))))
 

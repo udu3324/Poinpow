@@ -42,7 +42,7 @@ public class BlockLobbyMapAds {
 
         if (!itemFrame.containsMap()) return;
 
-        Poinpow.log.info("Blocked: Lobby Map Ad (" + itemFrame.getBlockX() + ", " + itemFrame.getBlockY() + ", " + itemFrame.getBlockZ() + ")");
+        //Poinpow.log.info("Blocked: Lobby Map Ad (" + itemFrame.getBlockX() + ", " + itemFrame.getBlockY() + ", " + itemFrame.getBlockZ() + ")");
 
         itemFrame.setHeldItemStack(item);
         itemFrame.setRotation(1);
