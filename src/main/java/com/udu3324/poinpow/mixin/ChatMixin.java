@@ -27,7 +27,6 @@ public class ChatMixin {
 
         if (BlockMinehutAds.check(chat, ci)) return;
 
-        //this should be left always at the bottom
-        RemoveLobbyRanks.check(chat, ci);
+
     }
 }

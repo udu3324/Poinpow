@@ -22,11 +22,6 @@ public class Commands {
         dispatcher.register(literal("poinpow")
                 .executes(ctx -> help(ctx.getSource()))
 
-                .then(literal(RemoveLobbyRanks.name)
-                        .executes(ctx -> description(ctx.getSource(), RemoveLobbyRanks.name, RemoveLobbyRanks.description, RemoveLobbyRanks.toggled))
-                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), RemoveLobbyRanks.name, RemoveLobbyRanks.toggled, true)))
-                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), RemoveLobbyRanks.name, RemoveLobbyRanks.toggled, false))))
-
                 .then(literal(AutoSkipBarrier.name)
                         .executes(ctx -> description(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.description, AutoSkipBarrier.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.toggled, true)))
@@ -107,13 +102,6 @@ public class Commands {
                 .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/NXm9tJvyBT"))
                 .withColor(Formatting.BLUE)
                 .withUnderline(true)
-        ));
-
-        //remove lobby ranks
-        source.sendFeedback(Text.literal("[toggled|" + RemoveLobbyRanks.toggled + "] " + RemoveLobbyRanks.name + " (click 2 toggle)").styled(style -> style
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(RemoveLobbyRanks.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + RemoveLobbyRanks.name + " " + !RemoveLobbyRanks.toggled.get()))
-                .withColor(Formatting.DARK_GRAY)
         ));
 
         //auto skip barrier

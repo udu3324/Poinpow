@@ -116,7 +116,6 @@ public class Config {
                 w.write("# Poinpow v" + version + " by udu3324 | Config" + System.lineSeparator());
                 w.write("# Hey! I suggest you use the in-game commands instead of editing the config directly." + System.lineSeparator());
                 w.write(System.lineSeparator());
-                w.write(RemoveLobbyRanks.name + ": false" + System.lineSeparator());
                 w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
@@ -139,7 +138,6 @@ public class Config {
                     create();
                 } else {
                     //set values from config since its good
-                    RemoveLobbyRanks.toggled.set(Boolean.parseBoolean(getValueFromConfig(RemoveLobbyRanks.name)));
                     AutoSkipBarrier.toggled.set(Boolean.parseBoolean(getValueFromConfig(AutoSkipBarrier.name)));
                     BlockLobbyWelcome.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyWelcome.name)));
                     BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
