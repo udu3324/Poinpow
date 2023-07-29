@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class Config {
     public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toString() + File.separator + "poinpow.cfg");
@@ -84,6 +86,7 @@ public class Config {
                     if (value.equals(line.substring(0, line.indexOf(":")))) {
                         // it's the line being modified
                         lines.set(i, value + ": " + data);
+                        break;
                     }
                 }
             }
@@ -99,6 +102,37 @@ public class Config {
             writer.close();
         } catch (Exception e) {
             Poinpow.log.info("Problem writing file. " + e);
+        }
+    }
+
+    //
+    public static ArrayList<Pattern> getListOfRegex() {
+        try {
+            // get the lines in the config (arraylist)
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(configFile));
+
+            ArrayList<String> lines = new ArrayList<>();
+
+            String l;
+            while ((l = bufferedReader.readLine()) != null) {
+                lines.add(l);
+            }
+            bufferedReader.close();
+
+            ArrayList<Pattern> linesOfRegex = new ArrayList<>();
+
+            //after the # regex comment, put everything else in the array
+            int commentLocation = lines.indexOf("regex") + 1;
+            for (int i = commentLocation; i < lines.size(); i++) {
+                linesOfRegex.add(Pattern.compile(lines.get(i)));
+            }
+
+            if (linesOfRegex.size() == 0) return null;
+
+            return linesOfRegex;
+        } catch (Exception e) {
+            Poinpow.log.info("Problem reading file. " + e);
+            return null;
         }
     }
 
@@ -122,6 +156,9 @@ public class Config {
                 w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
                 w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
+                w.write(System.lineSeparator());
+                w.write("# Each line below is regex for ChatPhraseFilter to use.");
+                w.write("/join");
                 w.close();
 
                 Poinpow.log.info("New config created.");

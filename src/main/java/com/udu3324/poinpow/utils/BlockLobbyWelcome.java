@@ -1,8 +1,12 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ScoreboardObjective;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
@@ -22,6 +26,17 @@ public class BlockLobbyWelcome {
 
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
+
+        if (MinecraftClient.getInstance().player == null) return false;
+
+        // check for scoreboard
+        Scoreboard scoreboard = MinecraftClient.getInstance().player.getScoreboard();
+        ArrayList<String> scores = new ArrayList<>();
+        for (ScoreboardObjective objective : scoreboard.getObjectives()) {
+            scores.add(objective.getDisplayName().toString());
+        }
+
+        if (!scores.toString().toLowerCase().contains("minehut")) return false;
 
         boolean blocked = false;
 
