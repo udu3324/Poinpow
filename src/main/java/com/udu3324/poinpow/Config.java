@@ -119,12 +119,21 @@ public class Config {
             }
             bufferedReader.close();
 
+            //config is out of date! reset
+            if (!lines.contains("# Each line below is regex for ChatPhraseFilter to use.")) {
+                Poinpow.log.info("bad!!! missing regex for chat phrase filter");
+                delete();
+                create();
+                return null;
+            }
+
             ArrayList<Pattern> linesOfRegex = new ArrayList<>();
 
             //after the # regex comment, put everything else in the array
-            int commentLocation = lines.indexOf("regex") + 1;
+            int commentLocation = lines.indexOf("# Each line below is regex for ChatPhraseFilter to use.") + 1;
             for (int i = commentLocation; i < lines.size(); i++) {
-                linesOfRegex.add(Pattern.compile(lines.get(i)));
+                if (!lines.get(i).isEmpty())
+                    linesOfRegex.add(Pattern.compile(lines.get(i)));
             }
 
             if (linesOfRegex.size() == 0) return null;
@@ -133,6 +142,17 @@ public class Config {
         } catch (Exception e) {
             Poinpow.log.info("Problem reading file. " + e);
             return null;
+        }
+    }
+
+    public static void addRegex(String regex) {
+        try {
+            FileWriter writer = new FileWriter(configFile, true);
+
+            writer.write(regex);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -151,13 +171,14 @@ public class Config {
                 w.write("# Hey! I suggest you use the in-game commands instead of editing the config directly." + System.lineSeparator());
                 w.write(System.lineSeparator());
                 w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
+                w.write(ChatPhraseFilter.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
                 w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
                 w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
                 w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
                 w.write(System.lineSeparator());
-                w.write("# Each line below is regex for ChatPhraseFilter to use.");
+                w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
                 w.write("/join");
                 w.close();
 
@@ -176,6 +197,7 @@ public class Config {
                 } else {
                     //set values from config since its good
                     AutoSkipBarrier.toggled.set(Boolean.parseBoolean(getValueFromConfig(AutoSkipBarrier.name)));
+                    ChatPhraseFilter.toggled.set(Boolean.parseBoolean(getValueFromConfig(ChatPhraseFilter.name)));
                     BlockLobbyWelcome.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyWelcome.name)));
                     BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
                     BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));

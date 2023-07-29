@@ -9,6 +9,9 @@ import net.minecraft.command.CommandRegistryAccess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 public class Poinpow implements ModInitializer {
 	public static final Logger log = LoggerFactory.getLogger("poinpow");
 	public static Boolean onMinehut = false;

@@ -27,6 +27,13 @@ public class Commands {
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), AutoSkipBarrier.name, AutoSkipBarrier.toggled, false))))
 
+                .then(literal(ChatPhraseFilter.name)
+                        .executes(ctx -> description(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.description, ChatPhraseFilter.toggled))
+                        .then(literal("add").executes(ctx -> ChatPhraseFilter.add(ctx.getSource())))
+                        .then(literal("remove").executes(ctx -> ChatPhraseFilter.remove(ctx.getSource())))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), ChatPhraseFilter.name, ChatPhraseFilter.toggled, false))))
+
                 .then(literal(BlockLobbyWelcome.name)
                         .executes(ctx -> description(ctx.getSource(), BlockLobbyWelcome.name, BlockLobbyWelcome.description, BlockLobbyWelcome.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockLobbyWelcome.name, BlockLobbyWelcome.toggled, true)))
@@ -108,6 +115,13 @@ public class Commands {
         source.sendFeedback(Text.literal("[toggled|" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(AutoSkipBarrier.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //auto skip barrier
+        source.sendFeedback(Text.literal("[toggled|" + ChatPhraseFilter.toggled + "] " + ChatPhraseFilter.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ChatPhraseFilter.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ChatPhraseFilter.name + " " + !ChatPhraseFilter.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
