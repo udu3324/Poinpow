@@ -1,6 +1,7 @@
 package com.udu3324.poinpow.api;
 
 import com.udu3324.poinpow.Config;
+import com.udu3324.poinpow.Poinpow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
@@ -23,7 +24,7 @@ public class GitHubVersion {
             con.setRequestMethod("GET");
 
             int responseCode = con.getResponseCode();
-            System.out.println("Request Type: " + con.getRequestMethod() + " | Response Code: " + responseCode + " | URL Requested " + obj);
+            Poinpow.log.info("Request Type: " + con.getRequestMethod() + " | Response Code: " + responseCode + " | URL Requested " + obj);
 
             //return only if response is not 200 (ok)
             if (responseCode != 200) return null;
