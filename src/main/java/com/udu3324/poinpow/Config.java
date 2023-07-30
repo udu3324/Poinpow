@@ -67,7 +67,7 @@ public class Config {
             ArrayList<String> lines = getConfig();
 
             if (lines == null) {
-                System.out.println("Problem reading poinpow config!!! Error!!!");
+                Poinpow.log.info("Problem reading poinpow config!!! Error!!!");
                 return;
             }
 
@@ -106,8 +106,8 @@ public class Config {
             ArrayList<String> lines = getConfig();
 
             if (lines == null) {
-                System.out.println("Problem reading poinpow config!!! Error!!!");
-                return null;
+                Poinpow.log.info("Problem reading poinpow config!!! Error!!!");
+                return new ArrayList<>();
             }
 
             //config is out of date! reset
@@ -115,7 +115,7 @@ public class Config {
                 Poinpow.log.info("bad!!! missing regex for chat phrase filter");
                 delete();
                 create();
-                return null;
+                return new ArrayList<>();
             }
 
             ArrayList<Pattern> linesOfRegex = new ArrayList<>();
@@ -129,12 +129,12 @@ public class Config {
                 }
             }
 
-            if (linesOfRegex.size() == 0) return null;
+            if (linesOfRegex.size() == 0) return new ArrayList<>();
 
             return linesOfRegex;
         } catch (Exception e) {
             Poinpow.log.info("Problem reading file. " + e);
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -154,7 +154,7 @@ public class Config {
             ArrayList<String> lines = getConfig();
 
             if (lines == null) {
-                System.out.println("Problem reading poinpow config!!! Error!!!");
+                Poinpow.log.info("Problem reading poinpow config!!! Error!!!");
                 return;
             }
 
@@ -250,6 +250,7 @@ public class Config {
                 }
             }
         } catch (IOException e) {
+            Poinpow.log.error("Error! Poinpow couldn't create a config! ");
             e.printStackTrace();
         }
     }
