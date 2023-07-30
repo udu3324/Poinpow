@@ -34,7 +34,7 @@ public class ChatPhraseFilter {
         if (!Poinpow.onMinehut) return;
 
         // return if there's nothing in the list
-        if (list == null || list.size() == 0) {
+        if (list.size() == 0) {
             return;
         }
 
@@ -62,6 +62,9 @@ public class ChatPhraseFilter {
         Commands.running = true;
         String input = StringArgumentType.getString(context, "regex");
 
+        //refresh list
+        list = Config.getListOfRegex();
+
         //check if regex already exists
         for (Pattern p : list) {
             if (p.toString().equals(input)) {
@@ -74,7 +77,7 @@ public class ChatPhraseFilter {
         context.getSource().sendFeedback(Text.literal("\nAdded the regex below to ChatPhraseFilter").styled(style -> style.withColor(Formatting.GREEN)));
         context.getSource().sendFeedback(Text.literal(input + "\n").styled(style -> style.withColor(Formatting.GOLD)));
 
-        System.out.println("addRegex(): " + input);
+        Poinpow.log.info("addRegex(): " + input);
 
         Config.addRegex(input);
         list.add(Pattern.compile(input));
@@ -87,14 +90,16 @@ public class ChatPhraseFilter {
         Commands.running = true;
         String input = StringArgumentType.getString(context, "regex");
 
+        //refresh list
+        list = Config.getListOfRegex();
+
         //check if regex already exists
         for (Pattern p : list) {
             if (p.toString().equals(input)) {
-                System.out.println("removeRegex(): " + input);
+                Poinpow.log.info("removeRegex(): " + input);
 
                 Config.removeRegex(input);
-                System.out.println("please!! " + list.remove(p));
-                //list.remove(p);
+                list.remove(p);
 
                 context.getSource().sendFeedback(Text.literal("Successfully removed \"" + input + "\" from the filter.").styled(style -> style.withColor(Formatting.GREEN)));
 
@@ -116,8 +121,11 @@ public class ChatPhraseFilter {
     public static int list(FabricClientCommandSource source) {
         Commands.running = true;
 
+        //refresh list
+        list = Config.getListOfRegex();
+
         //first check if list has nothing in it
-        if (list == null || list.size() == 0) {
+        if (list.size() == 0) {
             source.sendFeedback(Text.literal("\nThere is no regex in ChatPhraseFilter.").styled(style -> style.withColor(Formatting.BLUE)));
             Commands.running = false;
             return Command.SINGLE_SUCCESS;
