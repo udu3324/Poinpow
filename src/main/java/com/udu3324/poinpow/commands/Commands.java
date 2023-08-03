@@ -22,6 +22,7 @@ public class Commands {
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         ServerLookup.registerCommand(dispatcher);
+
         dispatcher.register(literal("poinpow")
                 .executes(ctx -> help(ctx.getSource()))
 
@@ -162,6 +163,13 @@ public class Commands {
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyMapAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyMapAds.name + " " + !BlockLobbyMapAds.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //lookup server
+        source.sendFeedback(Text.literal("/" + ServerLookup.name + " <serverName>").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ServerLookup.description + "\n\nClick to lookup a server!")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + ServerLookup.name + " test"))
+                .withColor(Formatting.GRAY)
         ));
 
         running = false;
