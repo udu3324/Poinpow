@@ -4,21 +4,16 @@ import com.udu3324.poinpow.utils.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Config {
-    public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toString() + File.separator + "poinpow.cfg");
     private static final ModContainer mod = FabricLoader.getInstance()
             .getModContainer("poinpow")
             .orElseThrow(NullPointerException::new);
-
     public static final String version = mod.getMetadata().getVersion().getFriendlyString();
+    public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toString() + File.separator + "poinpow.cfg");
 
     public static Boolean isLatestModVersion() throws IOException {
         BufferedReader brTest = new BufferedReader(new FileReader(configFile));
@@ -129,7 +124,7 @@ public class Config {
                 }
             }
 
-            if (linesOfRegex.size() == 0) return new ArrayList<>();
+            if (linesOfRegex.isEmpty()) return new ArrayList<>();
 
             return linesOfRegex;
         } catch (Exception e) {
@@ -210,32 +205,13 @@ public class Config {
     public static void create() {
         try {
             if (configFile.createNewFile()) {
-                FileWriter w = new FileWriter(configFile, true);
-                w.write("# Poinpow v" + version + " by udu3324 | Config" + System.lineSeparator());
-                w.write("# Hey! I suggest you use the in-game commands instead of editing the config directly." + System.lineSeparator());
-                w.write(System.lineSeparator());
-                w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
-                w.write(ChatPhraseFilter.name + ": true" + System.lineSeparator());
-                w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
-                w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
-                w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
-                w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
-                w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
-                w.write(System.lineSeparator());
-                w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
-                w.write("/join");
-                w.close();
-
+                writeDefaultConfig();
                 Poinpow.log.info("New config created.");
             } else {
-                //don't do anything if the config has alr been made
                 Poinpow.log.info("Config already exists.");
-
                 //delete config if bad version
                 if (!isLatestModVersion()) {
-                    Poinpow.log.info("Config is outdated!");
-
-                    //delete and create the new one with the right version
+                    Poinpow.log.info("Config is outdated!"); // reset config
                     delete();
                     create();
                 } else {
@@ -253,5 +229,23 @@ public class Config {
             Poinpow.log.error("Error! Poinpow couldn't create a config! ");
             e.printStackTrace();
         }
+    }
+
+    private static void writeDefaultConfig() throws IOException {
+        FileWriter w = new FileWriter(configFile, true);
+        w.write("# Poinpow v" + version + " by udu3324 | Config" + System.lineSeparator());
+        w.write("# Hey! I suggest you use the in-game commands instead of editing the config directly." + System.lineSeparator());
+        w.write(System.lineSeparator());
+        w.write(AutoSkipBarrier.name + ": true" + System.lineSeparator());
+        w.write(ChatPhraseFilter.name + ": true" + System.lineSeparator());
+        w.write(BlockLobbyWelcome.name + ": true" + System.lineSeparator());
+        w.write(BlockLobbyAds.name + ": true" + System.lineSeparator());
+        w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
+        w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
+        w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
+        w.write(System.lineSeparator());
+        w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
+        w.write("/join");
+        w.close();
     }
 }
