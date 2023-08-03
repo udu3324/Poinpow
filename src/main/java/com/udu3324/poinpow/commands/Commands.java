@@ -21,6 +21,7 @@ public class Commands {
     public static Boolean running = false;
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
+        ServerLookup.registerCommand(dispatcher);
         dispatcher.register(literal("poinpow")
                 .executes(ctx -> help(ctx.getSource()))
 
