@@ -19,7 +19,8 @@ Poinpow adds **utilities/features** that **make the player experience 102% bette
 - **BlockFreeCredits** - Blocks the vote messages encouraging free credits | `Example: [Minehut] PuppiesAreNice just got free credits by voting via /vote`
 - **BlockLobbyWelcome** - Blocks the lobby join message that sometimes has an ad in it
 - **BlockLobbyMapAds** - Removes the humungous map art that advertises things in lobby.
-
+- **LookupServer** - A command to see details about a minehut server. (contributed by git/[BuggyAl](https://github.com/BuggyAl))
+   
 Skipping ads **automatically** with AutoSkipBarrier **(very fast)**
 
 ![](https://cdn.modrinth.com/data/zmUzIoT1/images/aaa8cda2723de8979014cde22db46d34c8160553.png)
