@@ -13,7 +13,11 @@ public class AutoSkipBarrier {
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
     public static void rename() {
-        if (!toggled.get() || !Poinpow.onMinehut) return;
+        // return if toggled off (no need for bool)
+        if (!toggled.get()) return;
+
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return;
 
         new Thread(() -> {
             try {
