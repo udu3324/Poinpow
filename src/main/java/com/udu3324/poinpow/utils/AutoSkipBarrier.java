@@ -22,26 +22,36 @@ public class AutoSkipBarrier {
         new Thread(() -> {
             try {
                 int tries = 0;
-                for (int i = 0; i < 3000; i += 10) {
-                    Thread.sleep(i);
+                Poinpow.log.info("AutoSkipBarrier: Starting auto skip barrier period.");
+
+                //only try for 50 times, lasts about 5 seconds to allow slow connections/computers to load server items
+                while (tries <= 50) {
+                    Thread.sleep(100);
 
                     MinecraftClient client = MinecraftClient.getInstance();
 
-                    if (client.player == null || client.interactionManager == null) return;
+                    if (client.player == null || client.interactionManager == null) {
+                        Poinpow.log.info("AutoSkipBarrier: Player/client null");
+                        return;
+                    }
 
+                    //loop through the hot bar to check for each item's name
                     ItemStack items;
                     for (int itemIterator = 0; itemIterator < 9; itemIterator++) {
                         items = client.player.getInventory().getStack(itemIterator);
+
                         if (items.getName().getString().equals("Right click to continue")) {
                             client.player.getInventory().selectedSlot = itemIterator;
                             client.interactionManager.interactItem(client.player, client.player.getActiveHand());
-                        } else {
-                            tries++;
+
+                            Poinpow.log.info("AutoSkipBarrier: Found item! Attempting to skip...");
                         }
                     }
 
-                    if (tries > 90) break;
+                    tries++;
                 }
+
+                Poinpow.log.info("AutoSkipBarrier: Ended auto skip barrier period.");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
