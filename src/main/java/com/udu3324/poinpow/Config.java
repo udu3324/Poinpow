@@ -223,6 +223,7 @@ public class Config {
                     BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));
                     BlockFreeCredits.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockFreeCredits.name)));
                     BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
+                    HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
                 }
             }
         } catch (IOException e) {
@@ -243,6 +244,7 @@ public class Config {
         w.write(BlockMinehutAds.name + ": true" + System.lineSeparator());
         w.write(BlockFreeCredits.name + ": true" + System.lineSeparator());
         w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
+        w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(System.lineSeparator());
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
         w.write("/join");

@@ -12,6 +12,7 @@
 # 📘 Features
 Poinpow adds **utilities/features** that **make the player experience 102% better**. If you catch a bug, create an issue in the repo or send it to me in this [discord server](https://discord.gg/NXm9tJvyBT).
 
+- **HubCommandBack** - Adds back the hub (instead of /mh) command in servers that don't have it
 - **BlockMinehutAds** - Blocks ads from minehut that are sent in free servers | `Example: [Minehut] boost your server speed!!! go to this link!!!`
 - **ChatPhraseFilter** - Store a user made list of regex and filter lobby`Example: /poinpow chat_phrase_filter "join my server"`
 - **BlockLobbyAds** - Blocks player made ads in the lobby | `Example: [Ad] NintendoOS: /join fishwind join my server for op yes`
@@ -25,13 +26,13 @@ Skipping ads **automatically** with AutoSkipBarrier **(very fast)**
 
 ![](https://cdn.modrinth.com/data/zmUzIoT1/images/aaa8cda2723de8979014cde22db46d34c8160553.png)
 
-Example of **Block Lobby Ads** (blocks /ad commands by player) and BlockLobbyMapAds. It clears up chat a lot and blocks those awful map ads.
+Example of **BlockLobbyAds** (blocks ads made by player) and **BlockLobbyMapAds**. It clears up chat a lot and blocks those awful map ads.
 
 ![](https://cdn.modrinth.com/data/zmUzIoT1/images/c49843c5f4e7412df0c53670e94f3434eb4c4238.png)
 
-/poinpow - **intractable/clickable** help command
+/poinpow - An **intractable/clickable** help command that easily allows the toggling of certain features.
 
-![](https://cdn.modrinth.com/data/zmUzIoT1/images/619e7e67d0165ede30130a569f68d224d7d6e445.png)
+![](https://cdn.modrinth.com/data/zmUzIoT1/images/257cc486abee7e7f68aca9fb0c6d5fc2d8979cd5.png)
 
 ## 💾 How to Install
 0. Make sure you have **[Fabric](https://fabricmc.net/use/installer/)** installed in your mc launcher

@@ -1,0 +1,52 @@
+package com.udu3324.poinpow.utils;
+
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.tree.CommandNode;
+import com.udu3324.poinpow.Poinpow;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.command.CommandSource;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class HubCommandBack {
+    public static final String name = "hubCommandBack";
+    public static final String description = "Adds back the /hub command in sub-servers that don't have a hub.";
+
+    public static AtomicBoolean toggled = new AtomicBoolean(true);
+
+    public static void scan(String msg, CallbackInfoReturnable<Boolean> cir) {
+        // return if toggled off (no need for bool)
+        if (!toggled.get()) return;
+
+        // return if not on mh
+        if (!Poinpow.onMinehut) return;
+
+        // return if the message isn't the command
+        if (!msg.contains("/hub")) return;
+
+        // return if the sub-server already has /hub registered as a command
+        ClientPlayNetworkHandler clientPlayNetworkHandler = MinecraftClient.getInstance().getNetworkHandler();
+        if (clientPlayNetworkHandler == null) return;
+
+        CommandDispatcher<CommandSource> dispatcher = clientPlayNetworkHandler.getCommandDispatcher();
+        if (isCommandRegistered(dispatcher, "hub")) return;
+
+        // Prevent original message from sending
+        cir.setReturnValue(true);
+
+        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        if (player == null) return;
+
+        player.networkHandler.sendChatCommand("mh");
+    }
+
+    public static boolean isCommandRegistered(CommandDispatcher<CommandSource> dispatcher, String commandName) {
+        CommandNode<CommandSource> rootCommand = dispatcher.getRoot();
+
+        // Check if the command is present in the command tree
+        return rootCommand.getChild(commandName) != null;
+    }
+}
