@@ -63,6 +63,11 @@ public class Commands {
                         .executes(ctx -> description(ctx.getSource(), BlockLobbyMapAds.name, BlockLobbyMapAds.description, BlockLobbyMapAds.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockLobbyMapAds.name, BlockLobbyMapAds.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockLobbyMapAds.name, BlockLobbyMapAds.toggled, false))))
+
+                .then(literal(HubCommandBack.name)
+                        .executes(ctx -> description(ctx.getSource(), HubCommandBack.name, HubCommandBack.description, HubCommandBack.toggled))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), HubCommandBack.name, HubCommandBack.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), HubCommandBack.name, HubCommandBack.toggled, false))))
         );
     }
 
@@ -162,6 +167,13 @@ public class Commands {
         source.sendFeedback(Text.literal("[toggled|" + BlockLobbyMapAds.toggled + "] " + BlockLobbyMapAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyMapAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyMapAds.name + " " + !BlockLobbyMapAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //hub command back
+        source.sendFeedback(Text.literal("[toggled|" + HubCommandBack.toggled + "] " + HubCommandBack.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(HubCommandBack.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + HubCommandBack.name + " " + !HubCommandBack.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
