@@ -68,6 +68,11 @@ public class Commands {
                         .executes(ctx -> description(ctx.getSource(), HubCommandBack.name, HubCommandBack.description, HubCommandBack.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), HubCommandBack.name, HubCommandBack.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), HubCommandBack.name, HubCommandBack.toggled, false))))
+
+                .then(literal(BlockRaids.name)
+                        .executes(ctx -> description(ctx.getSource(), BlockRaids.name, BlockRaids.description, BlockRaids.toggled))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, false))))
         );
     }
 
