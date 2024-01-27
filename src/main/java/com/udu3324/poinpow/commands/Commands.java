@@ -68,6 +68,11 @@ public class Commands {
                         .executes(ctx -> description(ctx.getSource(), HubCommandBack.name, HubCommandBack.description, HubCommandBack.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), HubCommandBack.name, HubCommandBack.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), HubCommandBack.name, HubCommandBack.toggled, false))))
+
+                .then(literal(BlockRaids.name)
+                        .executes(ctx -> description(ctx.getSource(), BlockRaids.name, BlockRaids.description, BlockRaids.toggled))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, false))))
         );
     }
 
@@ -167,6 +172,13 @@ public class Commands {
         source.sendFeedback(Text.literal("[toggled|" + BlockLobbyMapAds.toggled + "] " + BlockLobbyMapAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyMapAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyMapAds.name + " " + !BlockLobbyMapAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //block lobby raids
+        source.sendFeedback(Text.literal("[toggled|" + BlockRaids.toggled + "] " + BlockRaids.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockRaids.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockRaids.name + " " + !BlockRaids.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
