@@ -28,6 +28,8 @@ public class ChatMixin {
 
         if (BlockMinehutAds.check(chat, ci)) return;
 
+        if (BlockRaids.check(chat, ci)) return;
+
         ChatPhraseFilter.check(chat, ci);
     }
 }
