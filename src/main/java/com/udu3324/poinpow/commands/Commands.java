@@ -175,6 +175,13 @@ public class Commands {
                 .withColor(Formatting.DARK_GRAY)
         ));
 
+        //block lobby raids
+        source.sendFeedback(Text.literal("[toggled|" + BlockRaids.toggled + "] " + BlockRaids.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockRaids.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockRaids.name + " " + !BlockRaids.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
         //hub command back
         source.sendFeedback(Text.literal("[toggled|" + HubCommandBack.toggled + "] " + HubCommandBack.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(HubCommandBack.description + "\n\nClick to Toggle")))
