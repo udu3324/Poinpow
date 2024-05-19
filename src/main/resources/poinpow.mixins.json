@@ -3,13 +3,13 @@
   "minVersion": "0.8",
   "package": "com.udu3324.poinpow.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "WorldLoadedMixin",
-    "MapartMixin"
-  ],
+  "mixins": [],
   "client": [
+    "WorldLoadedMixin",
+    "MapartMixin",
     "ChatMixin",
-    "ClientChatMixin"
+    "ClientChatMixin",
+    "ActionbarMixin"
   ],
   "injectors": {
     "defaultRequire": 1
