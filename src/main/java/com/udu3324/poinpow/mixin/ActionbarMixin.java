@@ -11,10 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ActionbarMixin {
     @Inject(method = "setOverlayMessage", at = @At("HEAD"), cancellable = true)
     private void onActionBarSet(Text message, boolean tinted, CallbackInfo ci) {
-        String text = message.getLiteralString();
-        System.out.println("smth changed ");
-        if (text == null) return;
-        System.out.println("found msg!!! " + text);
+        String text = message.getString();
 
         if (text.equals("eee")) {
             ci.cancel();
