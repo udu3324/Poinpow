@@ -103,7 +103,7 @@ public class Commands {
         running = true;
 
         //show the command
-        source.sendFeedback(Text.literal("\n/poinpow " + name + " toggled|" + toggled.get()).styled(style -> style
+        source.sendFeedback(Text.literal("\n/poinpow " + name + " " + toggled.get()).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to Toggle!")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/poinpow " + name + " " + !toggled.get()))
                 .withColor(Formatting.GOLD)
@@ -122,85 +122,85 @@ public class Commands {
         running = true;
 
         //auto skip barrier
-        source.sendFeedback(Text.literal("[toggled|" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(AutoSkipBarrier.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
-        //auto skip barrier
-        source.sendFeedback(Text.literal("[toggled|" + ChatPhraseFilter.toggled + "] " + ChatPhraseFilter.name).styled(style -> style
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ChatPhraseFilter.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ChatPhraseFilter.name + " " + !ChatPhraseFilter.toggled.get()))
-                .withColor(Formatting.DARK_GRAY)
-        ));
-
         //block lobby welcome
-        source.sendFeedback(Text.literal("[toggled|" + BlockLobbyWelcome.toggled + "] " + BlockLobbyWelcome.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + BlockLobbyWelcome.toggled + "] " + BlockLobbyWelcome.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyWelcome.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyWelcome.name + " " + !BlockLobbyWelcome.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
         //block lobby ads
-        source.sendFeedback(Text.literal("[toggled|" + BlockLobbyAds.toggled + "] " + BlockLobbyAds.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + BlockLobbyAds.toggled + "] " + BlockLobbyAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyAds.name + " " + !BlockLobbyAds.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
         //block minehut ads
-        source.sendFeedback(Text.literal("[toggled|" + BlockMinehutAds.toggled + "] " + BlockMinehutAds.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + BlockMinehutAds.toggled + "] " + BlockMinehutAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockMinehutAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockMinehutAds.name + " " + !BlockMinehutAds.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
         //block free credits
-        source.sendFeedback(Text.literal("[toggled|" + BlockFreeCredits.toggled + "] " + BlockFreeCredits.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + BlockFreeCredits.toggled + "] " + BlockFreeCredits.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockFreeCredits.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockFreeCredits.name + " " + !BlockFreeCredits.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
         //block lobby map ads
-        source.sendFeedback(Text.literal("[toggled|" + BlockLobbyMapAds.toggled + "] " + BlockLobbyMapAds.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + BlockLobbyMapAds.toggled + "] " + BlockLobbyMapAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockLobbyMapAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockLobbyMapAds.name + " " + !BlockLobbyMapAds.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
         //block lobby raids
-        source.sendFeedback(Text.literal("[toggled|" + BlockRaids.toggled + "] " + BlockRaids.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + BlockRaids.toggled + "] " + BlockRaids.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockRaids.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockRaids.name + " " + !BlockRaids.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
         //hub command back
-        source.sendFeedback(Text.literal("[toggled|" + HubCommandBack.toggled + "] " + HubCommandBack.name).styled(style -> style
+        source.sendFeedback(Text.literal("[" + HubCommandBack.toggled + "] " + HubCommandBack.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(HubCommandBack.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + HubCommandBack.name + " " + !HubCommandBack.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
-        //lookup server
-        source.sendFeedback(Text.literal("/" + ServerLookup.name + " <serverName>").styled(style -> style
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ServerLookup.description + "\n\nClick to lookup a server!")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + ServerLookup.name + " test"))
+        //chat phrase filter
+        source.sendFeedback(Text.literal("/poinpow " + ChatPhraseFilter.name + " <true/false/list/add/remove>").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ChatPhraseFilter.description + "\n\nClick to change")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ChatPhraseFilter.name + " "))
                 .withColor(Formatting.GRAY)
         ));
 
-        //discord
-        source.sendFeedback(Text.literal("official discord lol").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/NXm9tJvyBT"))
-                .withColor(Formatting.BLUE)
-                .withUnderline(true)
+        //toggle specific ads
+        source.sendFeedback(Text.literal("/poinpow " + ToggleSpecificAds.name + " <rank>").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ToggleSpecificAds.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ToggleSpecificAds.name + " "))
+                .withColor(Formatting.GRAY)
+        ));
+
+        //lookup server
+        source.sendFeedback(Text.literal("/" + ServerLookup.name + " <serverName>").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(ServerLookup.description + "\n\nClick to lookup a server!")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + ServerLookup.name + " "))
+                .withColor(Formatting.GRAY)
         ));
 
         //credits + version
         source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Poinpow was made by udu3324. \nIf you have any feedback, click on this text, and go to poinpow repo to create a issue.")))
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Poinpow is by udu3324. \nFeedback can be sent through the repo by clicking.")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow"))
                 .withColor(Formatting.GOLD)
                 .withBold(true)));

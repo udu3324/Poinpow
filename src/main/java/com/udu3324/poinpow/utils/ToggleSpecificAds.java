@@ -9,7 +9,7 @@ import net.minecraft.util.Formatting;
 
 public class ToggleSpecificAds {
     public static String name = "toggle_specific_ads";
-    public static String description = "Toggle which ads are seen in lobby based on ranks. This modifies BlockLobbyAds.";
+    public static String description = "This toggles and blocks certain ads based on ranks.";
 
     public static boolean defaultRank = false;
     public static boolean vip = false;
@@ -18,16 +18,25 @@ public class ToggleSpecificAds {
     public static boolean legend = false;
     public static boolean patron = false;
 
-    public static boolean checkAd(String chat) {
-        String rank = chat.substring(chat.indexOf(":"));
+    public static boolean checkRank(String chat) {
+        String rank = chat.substring(0, chat.indexOf(":"));
 
         //return true if none are activated
         if (!(defaultRank || vip || vipPlus || pro || legend || patron))
             return true;
 
         //check for if the rank portion contains it
-        //todo
-        return true;
+        if (rank.contains("[VIP]") && vip) {
+            return false;
+        } else if (rank.contains("[VIP+]") && vipPlus) {
+            return false;
+        } else if (rank.contains("[PRO]") && pro) {
+            return false;
+        } else if (rank.contains("[LEGEND]") && legend) {
+            return false;
+        } else if (rank.contains("[PATRON]") && patron) {
+            return false;
+        } else return !defaultRank;
     }
 
     public static int toggle(FabricClientCommandSource source, String rank) {
@@ -74,11 +83,11 @@ public class ToggleSpecificAds {
         Commands.running = true;
 
         //show the command
-        source.sendFeedback(Text.literal("\n/poinpow " + name + " (default/vip/vipPlus/pro/legend/patron)").styled(style -> style
-                .withColor(Formatting.GOLD)));
+        source.sendFeedback(Text.literal("\n/poinpow " + name + " (rank)").styled(style -> style.withColor(Formatting.GOLD)));
 
         //show the command's description
         source.sendFeedback(Text.literal(description));
+        source.sendFeedback(Text.literal("Default: " + defaultRank + "\nVIP: " + vip + "\nVIP+: " + vipPlus + "\nPro: " + pro + "\nLegend: " + legend + "\nPatron: " + patron).styled(style -> style.withColor(Formatting.GRAY)));
 
         Commands.running = false;
         return Command.SINGLE_SUCCESS;
