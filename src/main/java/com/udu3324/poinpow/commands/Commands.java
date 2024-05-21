@@ -73,6 +73,15 @@ public class Commands {
                         .executes(ctx -> description(ctx.getSource(), BlockRaids.name, BlockRaids.description, BlockRaids.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, false))))
+
+                .then(literal(ToggleSpecificAds.name)
+                        .executes(ctx -> ToggleSpecificAds.description(ctx.getSource()))
+                        .then(literal("default").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "default")))
+                        .then(literal("vip").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "vip")))
+                        .then(literal("vipPlus").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "vipPlus")))
+                        .then(literal("pro").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "pro")))
+                        .then(literal("legend").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "legend")))
+                        .then(literal("patron").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "patron"))))
         );
     }
 
@@ -111,20 +120,6 @@ public class Commands {
 
     private static int help(FabricClientCommandSource source) {
         running = true;
-
-        //credits + version
-        source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Poinpow was made by udu3324. \nIf you have any feedback, click on this text, and go to poinpow repo to create a issue.")))
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow"))
-                .withColor(Formatting.GOLD)
-                .withBold(true)));
-
-        //discord
-        source.sendFeedback(Text.literal("official discord lol").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/NXm9tJvyBT"))
-                .withColor(Formatting.BLUE)
-                .withUnderline(true)
-        ));
 
         //auto skip barrier
         source.sendFeedback(Text.literal("[toggled|" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
@@ -195,6 +190,20 @@ public class Commands {
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + ServerLookup.name + " test"))
                 .withColor(Formatting.GRAY)
         ));
+
+        //discord
+        source.sendFeedback(Text.literal("official discord lol").styled(style -> style
+                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/NXm9tJvyBT"))
+                .withColor(Formatting.BLUE)
+                .withUnderline(true)
+        ));
+
+        //credits + version
+        source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Poinpow was made by udu3324. \nIf you have any feedback, click on this text, and go to poinpow repo to create a issue.")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow"))
+                .withColor(Formatting.GOLD)
+                .withBold(true)));
 
         running = false;
 

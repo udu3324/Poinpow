@@ -20,8 +20,17 @@ public class BlockLobbyAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
+        boolean cancel = false;
+
         if (pattern.matcher(chat).find() || chat.contains(": /join")) {
             Poinpow.log.info("Blocked: " + chat);
+            cancel = true;
+        }
+
+        //todo
+        cancel = ToggleSpecificAds.checkAd(chat);
+
+        if (cancel) {
             ci.cancel();
         }
 

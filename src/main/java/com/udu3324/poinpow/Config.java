@@ -225,6 +225,13 @@ public class Config {
                     BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
                     HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
                     BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
+
+                    ToggleSpecificAds.defaultRank = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_default"));
+                    ToggleSpecificAds.vip = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_vip"));
+                    ToggleSpecificAds.vipPlus = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_vipPlus"));
+                    ToggleSpecificAds.pro = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_pro"));
+                    ToggleSpecificAds.legend = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_legend"));
+                    ToggleSpecificAds.patron = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_patron"));
                 }
             }
         } catch (IOException e) {
@@ -247,9 +254,17 @@ public class Config {
         w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
         w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
+
+        w.write(ToggleSpecificAds.name + "_default: false" + System.lineSeparator());
+        w.write(ToggleSpecificAds.name + "_vip: false" + System.lineSeparator());
+        w.write(ToggleSpecificAds.name + "_vipPlus: false" + System.lineSeparator());
+        w.write(ToggleSpecificAds.name + "_pro: false" + System.lineSeparator());
+        w.write(ToggleSpecificAds.name + "_legend: false" + System.lineSeparator());
+        w.write(ToggleSpecificAds.name + "_patron: false" + System.lineSeparator());
+        
         w.write(System.lineSeparator());
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
-        w.write("/join");
+        w.write("this_is_a_example");
         w.close();
     }
 }
