@@ -1,6 +1,7 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
+import net.minecraft.entity.boss.BossBar;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -8,12 +9,12 @@ import java.util.regex.Pattern;
 
 public class BlockMinehutAds {
     public static String name = "block_minehut_ads";
-    public static String description = "Blocks ads made by minehut that sometimes shows up in free sub-servers.";
+    public static String description = "Blocks ads made by minehut that sometimes shows up in free sub-servers, and clean the bossbar and actionbar.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
     final static Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
 
-    public static Boolean check(String chat, CallbackInfo ci) {
+    public static Boolean checkChat(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return false;
 
@@ -26,5 +27,19 @@ public class BlockMinehutAds {
         }
 
         return pattern.matcher(chat).find();
+    }
+
+    public static void checkActionbar(String actionbar, CallbackInfo ci) {
+        //text when hovering over map ads in lobby
+        if (actionbar.contains("[Billboard]")) {
+            ci.cancel();
+        }
+    }
+
+    public static void checkBossbar(BossBar bossbar, CallbackInfo ci) {
+        //text when hovering over map ads in lobby
+        if (bossbar.getName().getString().contains("[Billboard]")) {
+            ci.cancel();
+        }
     }
 }

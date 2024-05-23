@@ -1,5 +1,6 @@
 package com.udu3324.poinpow.mixin;
 
+import com.udu3324.poinpow.utils.BlockMinehutAds;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,5 +17,6 @@ public class ActionbarMixin {
         if (text.equals("eee")) {
             ci.cancel();
         }
+        BlockMinehutAds.checkActionbar(text, ci);
     }
 }

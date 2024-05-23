@@ -22,9 +22,11 @@ public class BlockLobbyAds {
 
         //if it's not a suspected ad, return
         if (!(pattern.matcher(chat).find() || chat.contains(": /join"))) return false;
-
+        System.out.println("suspect " + pattern.matcher(chat).find() + " " + chat.contains(": /join"));
         //since it's an ad, check the rank if its allowed
-        if (!ToggleSpecificAds.checkRank(chat)) return false;
+        boolean yeah = ToggleSpecificAds.checkRank(chat);
+        System.out.println("yeah = " + yeah);
+        if (yeah) return false;
 
         System.out.println("Blocked: " + chat);
         ci.cancel();

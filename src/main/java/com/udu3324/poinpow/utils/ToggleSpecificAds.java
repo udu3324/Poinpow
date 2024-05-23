@@ -4,6 +4,7 @@ import com.udu3324.poinpow.Config;
 import com.udu3324.poinpow.commands.Commands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import com.mojang.brigadier.Command;
+import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -18,25 +19,26 @@ public class ToggleSpecificAds {
     public static boolean legend = false;
     public static boolean patron = false;
 
+    //return true if a rank that is toggled is matched
     public static boolean checkRank(String chat) {
         String rank = chat.substring(0, chat.indexOf(":"));
 
         //return true if none are activated
         if (!(defaultRank || vip || vipPlus || pro || legend || patron))
-            return true;
-
+            return false;
+        System.out.println("rank is " + rank);
         //check for if the rank portion contains it
         if (rank.contains("[VIP]") && vip) {
-            return false;
+            return true;
         } else if (rank.contains("[VIP+]") && vipPlus) {
-            return false;
+            return true;
         } else if (rank.contains("[PRO]") && pro) {
-            return false;
+            return true;
         } else if (rank.contains("[LEGEND]") && legend) {
-            return false;
+            return true;
         } else if (rank.contains("[PATRON]") && patron) {
-            return false;
-        } else return !defaultRank;
+            return true;
+        } else return defaultRank;
     }
 
     public static int toggle(FabricClientCommandSource source, String rank) {
@@ -87,7 +89,9 @@ public class ToggleSpecificAds {
 
         //show the command's description
         source.sendFeedback(Text.literal(description));
-        source.sendFeedback(Text.literal("Default: " + defaultRank + "\nVIP: " + vip + "\nVIP+: " + vipPlus + "\nPro: " + pro + "\nLegend: " + legend + "\nPatron: " + patron).styled(style -> style.withColor(Formatting.GRAY)));
+        source.sendFeedback(Text.literal("Default: " + defaultRank + "\nVIP: " + vip + "\nVIP+: " + vipPlus + "\nPro: " + pro + "\nLegend: " + legend + "\nPatron: " + patron).styled(style -> style
+                .withColor(Formatting.GRAY)
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ToggleSpecificAds.name + " "))));
 
         Commands.running = false;
         return Command.SINGLE_SUCCESS;

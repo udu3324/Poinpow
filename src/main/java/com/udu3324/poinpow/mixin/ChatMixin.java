@@ -26,7 +26,7 @@ public class ChatMixin {
 
         if (BlockFreeCredits.check(chat, ci)) return;
 
-        if (BlockMinehutAds.check(chat, ci)) return;
+        if (BlockMinehutAds.checkChat(chat, ci)) return;
 
         if (BlockRaids.check(chat, ci)) return;
 
