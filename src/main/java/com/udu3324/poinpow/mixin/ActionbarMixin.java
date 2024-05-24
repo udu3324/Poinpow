@@ -14,9 +14,6 @@ public class ActionbarMixin {
     private void onActionBarSet(Text message, boolean tinted, CallbackInfo ci) {
         String text = message.getString();
 
-        if (text.equals("eee")) {
-            ci.cancel();
-        }
         BlockMinehutAds.checkActionbar(text, ci);
     }
 }

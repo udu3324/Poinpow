@@ -28,4 +28,8 @@ public class BlockRaids {
 
         return pattern.matcher(chat).find();
     }
+
+    //public static Boolean checkBossbar(String bossbar, CallbackInfo ci) {
+
+    //}
 }

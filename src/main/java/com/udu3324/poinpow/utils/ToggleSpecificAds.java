@@ -26,7 +26,7 @@ public class ToggleSpecificAds {
         //return true if none are activated
         if (!(defaultRank || vip || vipPlus || pro || legend || patron))
             return false;
-        System.out.println("rank is " + rank);
+
         //check for if the rank portion contains it
         if (rank.contains("[VIP]") && vip) {
             return true;

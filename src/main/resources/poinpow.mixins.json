@@ -10,7 +10,8 @@
     "ChatMixin",
     "ClientChatMixin",
     "ActionbarMixin",
-    "ChestMixin"
+    "ChestMixin",
+    "BossbarMixin"
   ],
   "injectors": {
     "defaultRequire": 1
