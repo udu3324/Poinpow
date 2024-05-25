@@ -20,6 +20,7 @@ public class Commands {
     // this bool stops the utils from running when showing examples
     public static Boolean running = false;
 
+    //register poinpow commands in the mc brigadier
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         ServerLookup.registerCommand(dispatcher);
 
@@ -90,6 +91,7 @@ public class Commands {
         );
     }
 
+    //this generalizes the toggling function of common/repetitive commands/features
     private static int toggle(FabricClientCommandSource source, String name, AtomicBoolean original, Boolean toggled) {
         running = true;
         original.set(toggled);
@@ -104,6 +106,7 @@ public class Commands {
         return Command.SINGLE_SUCCESS;
     }
 
+    //this generalizes creating the lore for the text in /poinpow command
     private static int description(FabricClientCommandSource source, String name, String description, AtomicBoolean toggled) {
         running = true;
 
@@ -123,6 +126,7 @@ public class Commands {
         return Command.SINGLE_SUCCESS;
     }
 
+    //help command (/poinpow) for the mod
     private static int help(FabricClientCommandSource source) {
         running = true;
 

@@ -8,6 +8,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import static com.udu3324.poinpow.utils.ToggleSpecificAds.*;
+
 public class Config {
     private static final ModContainer mod = FabricLoader.getInstance()
             .getModContainer("poinpow")
@@ -15,6 +17,7 @@ public class Config {
     public static final String version = mod.getMetadata().getVersion().getFriendlyString();
     public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toString() + File.separator + "poinpow.cfg");
 
+    //get the version number stored in the config
     public static Boolean isLatestModVersion() throws IOException {
         BufferedReader brTest = new BufferedReader(new FileReader(configFile));
         String text = brTest.readLine();
@@ -95,7 +98,7 @@ public class Config {
         }
     }
 
-    //
+    //this gets the list of regex at the bottom of the config
     public static ArrayList<Pattern> getListOfRegex() {
         try {
             ArrayList<String> lines = getConfig();
@@ -133,6 +136,7 @@ public class Config {
         }
     }
 
+    //this adds a line of regex at the bottom of the config
     public static void addRegex(String regex) {
         try {
             FileWriter writer = new FileWriter(configFile, true);
@@ -144,6 +148,7 @@ public class Config {
         }
     }
 
+    //this removes a line of regex at the bottom of the config
     public static void removeRegex(String regex) {
         try {
             ArrayList<String> lines = getConfig();
@@ -202,45 +207,52 @@ public class Config {
             Poinpow.log.info("Error! Config file couldn't be deleted!");
     }
 
+    //creates a config if possible, does other stuff if it cant
     public static void create() {
         try {
+            //try making a new config
             if (configFile.createNewFile()) {
                 writeDefaultConfig();
                 Poinpow.log.info("New config created.");
-            } else {
-                Poinpow.log.info("Config already exists.");
-                //delete config if bad version
-                if (!isLatestModVersion()) {
-                    Poinpow.log.info("Config is outdated!"); // reset config
-                    delete();
-                    create();
-                } else {
-                    //set values from config since its good
-                    AutoSkipBarrier.toggled.set(Boolean.parseBoolean(getValueFromConfig(AutoSkipBarrier.name)));
-                    ChatPhraseFilter.toggled.set(Boolean.parseBoolean(getValueFromConfig(ChatPhraseFilter.name)));
-                    BlockLobbyWelcome.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyWelcome.name)));
-                    BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
-                    BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));
-                    BlockFreeCredits.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockFreeCredits.name)));
-                    BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
-                    HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
-                    BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
-                    BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
-
-                    ToggleSpecificAds.defaultRank = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_default"));
-                    ToggleSpecificAds.vip = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_vip"));
-                    ToggleSpecificAds.vipPlus = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_vipPlus"));
-                    ToggleSpecificAds.pro = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_pro"));
-                    ToggleSpecificAds.legend = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_legend"));
-                    ToggleSpecificAds.patron = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_patron"));
-                }
+                return;
             }
+
+            Poinpow.log.info("Config already exists.");
+
+            //delete config if bad version
+            if (!isLatestModVersion()) {
+                Poinpow.log.info("Config is outdated!"); // reset config
+                delete();
+                create();
+                return;
+            }
+
+            //set values from config since its good
+            AutoSkipBarrier.toggled.set(Boolean.parseBoolean(getValueFromConfig(AutoSkipBarrier.name)));
+            ChatPhraseFilter.toggled.set(Boolean.parseBoolean(getValueFromConfig(ChatPhraseFilter.name)));
+            BlockLobbyWelcome.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyWelcome.name)));
+            BlockLobbyAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyAds.name)));
+            BlockMinehutAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockMinehutAds.name)));
+            BlockFreeCredits.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockFreeCredits.name)));
+            BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
+            HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
+            BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
+            BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
+
+            defaultRank = Boolean.parseBoolean(getValueFromConfig(name + "_default"));
+            vip = Boolean.parseBoolean(getValueFromConfig(name + "_vip"));
+            vipPlus = Boolean.parseBoolean(getValueFromConfig(name + "_vipPlus"));
+            pro = Boolean.parseBoolean(getValueFromConfig(name + "_pro"));
+            legend = Boolean.parseBoolean(getValueFromConfig(name + "_legend"));
+            patron = Boolean.parseBoolean(getValueFromConfig(name + "_patron"));
+
         } catch (IOException e) {
             Poinpow.log.error("Error! Poinpow couldn't create a config! ");
             e.printStackTrace();
         }
     }
 
+    //this writes a new config with all the default values
     private static void writeDefaultConfig() throws IOException {
         FileWriter w = new FileWriter(configFile, true);
         w.write("# Poinpow v" + version + " by udu3324 | Discord: https://discord.gg/NXm9tJvyBT | Config" + System.lineSeparator());
@@ -257,12 +269,12 @@ public class Config {
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
         w.write(BlockChestAds.name + ": true" + System.lineSeparator());
 
-        w.write(ToggleSpecificAds.name + "_default: false" + System.lineSeparator());
-        w.write(ToggleSpecificAds.name + "_vip: false" + System.lineSeparator());
-        w.write(ToggleSpecificAds.name + "_vipPlus: false" + System.lineSeparator());
-        w.write(ToggleSpecificAds.name + "_pro: false" + System.lineSeparator());
-        w.write(ToggleSpecificAds.name + "_legend: false" + System.lineSeparator());
-        w.write(ToggleSpecificAds.name + "_patron: false" + System.lineSeparator());
+        w.write(name + "_default: false" + System.lineSeparator());
+        w.write(name + "_vip: false" + System.lineSeparator());
+        w.write(name + "_vipPlus: false" + System.lineSeparator());
+        w.write(name + "_pro: false" + System.lineSeparator());
+        w.write(name + "_legend: false" + System.lineSeparator());
+        w.write(name + "_patron: false" + System.lineSeparator());
         
         w.write(System.lineSeparator());
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());

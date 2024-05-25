@@ -27,6 +27,6 @@ public class WorldLoadedMixin {
         //check for latest version of mod
         if (Poinpow.onMinehut) GitHubVersion.check();
 
-        AutoSkipBarrier.rename();
+        AutoSkipBarrier.check();
     }
 }

@@ -12,7 +12,7 @@ public class AutoSkipBarrier {
     public static String description = "Auto-skips the ads when joining free sub-servers/minehut.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
-    public static void rename() {
+    public static void check() {
         // return if toggled off (no need for bool)
         if (!toggled.get()) return;
 

@@ -26,7 +26,7 @@ public class BlockRaids {
         if (!Poinpow.onMinehut) return false;
 
         if (pattern.matcher(chat).find() || pattern2.matcher(chat).find()) {
-            Poinpow.log.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: {}", chat);
             ci.cancel();
         }
 

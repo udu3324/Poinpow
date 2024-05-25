@@ -13,8 +13,6 @@ public class BlockMinehutAds {
 
     final static Pattern pattern = Pattern.compile("^(\\n\\n|/n/n)\\[Minehut].*(\\n\\n|/n/n)$");
 
-    public static Boolean runOnceOnLoad = false;
-
     public static Boolean checkChat(String chat, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return false;
@@ -23,7 +21,7 @@ public class BlockMinehutAds {
         if (!Poinpow.onMinehut) return false;
 
         if (pattern.matcher(chat).find()) {
-            Poinpow.log.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: {}", chat);
             ci.cancel();
         }
 

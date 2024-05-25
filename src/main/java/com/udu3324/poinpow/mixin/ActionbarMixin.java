@@ -1,7 +1,6 @@
 package com.udu3324.poinpow.mixin;
 
 import com.udu3324.poinpow.utils.BlockLobbyMapAds;
-import com.udu3324.poinpow.utils.BlockRaids;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;

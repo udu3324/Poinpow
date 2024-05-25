@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Minehut {
+    //(BuggyAl) this gets information about a server in json
     public static JsonObject getServer(ClientPlayerEntity player, String serverName) {
         try {
             URL apiURL = new URL("https://api.minehut.com/server/" + serverName + "?byName=true");
@@ -30,7 +31,7 @@ public class Minehut {
 
             return obj;
         } catch (Exception e) {
-            Poinpow.log.error("Error while looking up server: " + serverName + " - " + e);
+            Poinpow.log.error("Error while looking up server: {} - {}", serverName, e);
             player.sendMessage(Text.literal("Response to minehut api was unsuccessful. Server name: " + serverName));
             return null;
         }

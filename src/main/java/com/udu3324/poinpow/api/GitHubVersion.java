@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class GitHubVersion {
+    //this gets the latest version of poinpow released
     private static String get() {
         try {
             URL obj = new URL("https://api.github.com/repos/udu3324/poinpow/tags");
@@ -24,7 +25,7 @@ public class GitHubVersion {
             con.setRequestMethod("GET");
 
             int responseCode = con.getResponseCode();
-            Poinpow.log.info("Request Type: " + con.getRequestMethod() + " | Response Code: " + responseCode + " | URL Requested " + obj);
+            Poinpow.log.info("Request Type: {} | Response Code: {} | URL Requested {}", con.getRequestMethod(), responseCode, obj);
 
             //return only if response is not 200 (ok)
             if (responseCode != 200) return null;
@@ -53,6 +54,7 @@ public class GitHubVersion {
         return null;
     }
 
+    //this checks the current and latest version of poinpow to then send an alert to update
     private static boolean canSend = true;
     public static void check() {
         String latestVersion = get();
