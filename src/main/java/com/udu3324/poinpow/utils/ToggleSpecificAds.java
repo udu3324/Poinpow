@@ -38,7 +38,7 @@ public class ToggleSpecificAds {
             return true;
         } else if (rank.contains("[PATRON]") && patron) {
             return true;
-        } else return defaultRank;
+        } else return !(rank.contains("VIP") || rank.contains("PRO") || rank.contains("LEGEND") || rank.contains("PATRON")) && defaultRank;
     }
 
     public static int toggle(FabricClientCommandSource source, String rank) {
