@@ -34,9 +34,7 @@ public class ChatPhraseFilter {
         if (!Poinpow.onMinehut) return;
 
         // return if there's nothing in the list
-        if (list.size() == 0) {
-            return;
-        }
+        if (list.isEmpty()) return;
 
         if (MinecraftClient.getInstance().player == null) return;
 
@@ -51,7 +49,7 @@ public class ChatPhraseFilter {
 
         for (Pattern p : list) {
             if (p.matcher(chat).find()) {
-                Poinpow.log.info("Filtered: " + chat);
+                Poinpow.log.info("Filtered: {}", chat);
                 ci.cancel();
                 return;
             }
@@ -77,7 +75,7 @@ public class ChatPhraseFilter {
         context.getSource().sendFeedback(Text.literal("\nAdded the regex below to ChatPhraseFilter").styled(style -> style.withColor(Formatting.GREEN)));
         context.getSource().sendFeedback(Text.literal(input + "\n").styled(style -> style.withColor(Formatting.GOLD)));
 
-        Poinpow.log.info("addRegex(): " + input);
+        Poinpow.log.info("addRegex(): {}", input);
 
         Config.addRegex(input);
         list.add(Pattern.compile(input));
@@ -96,7 +94,7 @@ public class ChatPhraseFilter {
         //check if regex already exists
         for (Pattern p : list) {
             if (p.toString().equals(input)) {
-                Poinpow.log.info("removeRegex(): " + input);
+                Poinpow.log.info("removeRegex(): {}", input);
 
                 Config.removeRegex(input);
                 list.remove(p);
@@ -125,7 +123,7 @@ public class ChatPhraseFilter {
         list = Config.getListOfRegex();
 
         //first check if list has nothing in it
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             source.sendFeedback(Text.literal("\nThere is no regex in ChatPhraseFilter.").styled(style -> style.withColor(Formatting.BLUE)));
             Commands.running = false;
             return Command.SINGLE_SUCCESS;

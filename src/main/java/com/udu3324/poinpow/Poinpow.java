@@ -12,9 +12,10 @@ import org.slf4j.LoggerFactory;
 public class Poinpow implements ModInitializer {
 	public static final Logger log = LoggerFactory.getLogger("poinpow");
 	public static Boolean onMinehut = false;
+
 	@Override
 	public void onInitialize() {
-		log.info("udu3324 was here!!! | poinpow v" + Config.version);
+        log.info("udu3324 was here!!! | poinpow v{}", Config.version);
 
 		// register the commands
 		ClientCommandRegistrationCallback.EVENT.register(Poinpow::registerCommands);

@@ -20,11 +20,16 @@ public class BlockLobbyAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        if (pattern.matcher(chat).find() || chat.contains(": /join")) {
-            Poinpow.log.info("Blocked: " + chat);
-            ci.cancel();
-        }
+        //if it's not a suspected ad, return
+        if (!(pattern.matcher(chat).find() || chat.contains(": /join"))) return false;
 
-        return pattern.matcher(chat).find();
+        //since it's an ad, check the rank if its allowed
+        boolean yeah = ToggleSpecificAds.checkRank(chat);
+
+        if (yeah) return false;
+
+        ci.cancel();
+
+        return true;
     }
 }

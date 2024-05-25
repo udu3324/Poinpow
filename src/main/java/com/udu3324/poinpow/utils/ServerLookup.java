@@ -42,7 +42,7 @@ public class ServerLookup {
         new Thread(() -> {
             ClientPlayerEntity player = MinecraftClient.getInstance().player;
             if (player == null) {
-                Poinpow.log.error("Error while looking up server: " + serverName + " - Player is null");
+                Poinpow.log.error("Error while looking up server: {} - Player is null", serverName);
                 return;
             }
 

@@ -21,7 +21,7 @@ public class BlockFreeCredits {
         if (!Poinpow.onMinehut) return false;
 
         if (pattern.matcher(chat).find()) {
-            Poinpow.log.info("Blocked: " + chat);
+            Poinpow.log.info("Blocked: {}", chat);
             ci.cancel();
         }
 
