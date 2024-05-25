@@ -12,7 +12,6 @@ import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
@@ -68,15 +67,15 @@ public class BlockLobbyMapAds {
         return true;
     }
 
-    public static void checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
+    public static boolean checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
         // return false if toggled off
-        if (!toggled.get()) return;
+        if (!toggled.get()) return false;
 
         // return if not on minehut
-        if (!Poinpow.onMinehut) return;
+        if (!Poinpow.onMinehut) return false;
 
         //return if bossbars is empty
-        if (bossbars.isEmpty()) return;
+        if (bossbars.isEmpty()) return false;
 
         //check all the bossbars present
         UUID bossbar = null;
@@ -90,9 +89,11 @@ public class BlockLobbyMapAds {
             }
         }
 
-        if (bossbar == null) return;
+        if (bossbar == null) return false;
 
         bossbars.remove(bossbar);
         ci.cancel();
+
+        return true;
     }
 }

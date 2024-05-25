@@ -2,7 +2,6 @@ package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.entity.boss.BossBarManager;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -34,15 +33,15 @@ public class BlockRaids {
         return pattern.matcher(chat).find();
     }
 
-    public static void checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
+    public static boolean checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
         // return false if toggled off
-        if (!toggled.get()) return;
+        if (!toggled.get()) return false;
 
         // return if not on minehut
-        if (!Poinpow.onMinehut) return;
+        if (!Poinpow.onMinehut) return false;
 
         //return if bossbars is empty
-        if (bossbars.isEmpty()) return;
+        if (bossbars.isEmpty()) return false;
 
         //check all the bossbars present
         UUID bossbar = null;
@@ -56,8 +55,11 @@ public class BlockRaids {
             }
         }
 
-        if (bossbar == null) return;
+        if (bossbar == null) return false;
+
         bossbars.remove(bossbar);
         ci.cancel();
+
+        return true;
     }
 }

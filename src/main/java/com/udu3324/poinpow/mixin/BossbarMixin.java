@@ -1,7 +1,6 @@
 package com.udu3324.poinpow.mixin;
 
 import com.udu3324.poinpow.utils.BlockLobbyMapAds;
-import com.udu3324.poinpow.utils.BlockRaids;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
 import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
@@ -12,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,8 +24,8 @@ public class BossbarMixin {
 
     @Inject(method = "handlePacket", at = @At("HEAD"), cancellable = true)
     private void onBossbarRender(BossBarS2CPacket packet, CallbackInfo ci) {
-        //BlockLobbyMapAds.checkBossbar(bossBars, ci);
-
-        BlockRaids.checkBossbar(bossBars, ci);
+        BlockLobbyMapAds.checkBossbar(bossBars, ci);
+        //todo fix blockRaids as the client still tries to update the bossbar causing errors
+        //BlockRaids.checkBossbar(bossBars, ci);
     }
 }
