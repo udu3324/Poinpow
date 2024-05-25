@@ -1,10 +1,15 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
+import net.minecraft.client.gui.hud.ClientBossBar;
 import net.minecraft.entity.boss.BossBar;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
+import net.minecraft.text.Texts;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
@@ -45,7 +50,7 @@ public class BlockMinehutAds {
         }
     }
 
-    public static void checkBossbar(BossBar bossbar, CallbackInfo ci) {
+    public static void checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
         // return false if toggled off
         if (!toggled.get()) return;
 
@@ -53,12 +58,22 @@ public class BlockMinehutAds {
         if (!Poinpow.onMinehut) return;
 
         //boss bar shown when hovering over map ads
-        if (bossbar.getName().getString().contains("[Billboard]")) {
-            ci.cancel();
-            if (runOnceOnLoad) {
-                bossbar.setName(Text.literal("eee"));
-                runOnceOnLoad = false;
+        // if (bossbar.getName().getString().contains("[Billboard]")) {
+        //    ci.cancel();
+        //}
+
+        //loop through all bossbars
+        UUID bossbar = null;
+        for (Map.Entry<UUID, ClientBossBar> entry : bossbars.entrySet()) {
+            Text text = entry.getValue().getName();
+
+            if (text.getString().contains("[Billboard]")) {
+                bossbar = entry.getKey();
+                break;
             }
         }
+
+        bossbars.remove(bossbar);
+        ci.cancel();
     }
 }
