@@ -3,6 +3,7 @@ package com.udu3324.poinpow.utils;
 import com.udu3324.poinpow.Poinpow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ClientBossBar;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
@@ -20,8 +21,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class BlockLobbyMapAds {
     public static String name = "block_lobby_map_ads";
     public static String description = "Removes the humungous map art that advertises things in lobby, including the actionbar and bossbar.";
+
     public static AtomicBoolean toggled = new AtomicBoolean(true);
-    private static final ItemStack item = new ItemStack(Items.DIAMOND, 1).setCustomName(Text.of("Poinpow by udu3324"));
 
     public static void block(Entity entity) {
         // return if toggled off (no need for bool)
@@ -47,6 +48,9 @@ public class BlockLobbyMapAds {
         if (!itemFrame.containsMap()) return;
 
         //Poinpow.log.info("Blocked: Lobby Map Ad (" + itemFrame.getBlockX() + ", " + itemFrame.getBlockY() + ", " + itemFrame.getBlockZ() + ")");
+
+        ItemStack item = Items.DIAMOND.getDefaultStack();
+        item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Poinpow by udu3324"));
 
         itemFrame.setHeldItemStack(item);
         itemFrame.setRotation(1);
