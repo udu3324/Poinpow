@@ -1,6 +1,7 @@
 package com.udu3324.poinpow.mixin;
 
-import com.udu3324.poinpow.utils.BlockMinehutAds;
+import com.udu3324.poinpow.utils.BlockLobbyMapAds;
+import com.udu3324.poinpow.utils.BlockRaids;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,6 +15,6 @@ public class ActionbarMixin {
     private void onActionBarSet(Text message, boolean tinted, CallbackInfo ci) {
         String text = message.getString();
 
-        BlockMinehutAds.checkActionbar(text, ci);
+        BlockLobbyMapAds.checkActionbar(text, ci);
     }
 }

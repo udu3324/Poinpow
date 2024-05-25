@@ -1,12 +1,10 @@
 package com.udu3324.poinpow.mixin;
 
-import com.udu3324.poinpow.utils.BlockMinehutAds;
-import net.minecraft.client.gui.DrawContext;
+import com.udu3324.poinpow.utils.BlockLobbyMapAds;
+import com.udu3324.poinpow.utils.BlockRaids;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.entity.boss.BossBar;
 import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
-import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -14,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,6 +26,8 @@ public class BossbarMixin {
 
     @Inject(method = "handlePacket", at = @At("HEAD"), cancellable = true)
     private void onBossbarRender(BossBarS2CPacket packet, CallbackInfo ci) {
-        BlockMinehutAds.checkBossbar(bossBars, ci);
+        //BlockLobbyMapAds.checkBossbar(bossBars, ci);
+
+        BlockRaids.checkBossbar(bossBars, ci);
     }
 }

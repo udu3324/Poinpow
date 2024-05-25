@@ -1,8 +1,13 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
+import net.minecraft.client.gui.hud.ClientBossBar;
+import net.minecraft.entity.boss.BossBarManager;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
@@ -29,7 +34,30 @@ public class BlockRaids {
         return pattern.matcher(chat).find();
     }
 
-    //public static Boolean checkBossbar(String bossbar, CallbackInfo ci) {
+    public static void checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
+        // return false if toggled off
+        if (!toggled.get()) return;
 
-    //}
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return;
+
+        //return if bossbars is empty
+        if (bossbars.isEmpty()) return;
+
+        //check all the bossbars present
+        UUID bossbar = null;
+
+        for (Map.Entry<UUID, ClientBossBar> entry : bossbars.entrySet()) {
+            Text text = entry.getValue().getName();
+
+            if (text.getString().contains("Raid")) {
+                bossbar = entry.getKey();
+                break;
+            }
+        }
+
+        if (bossbar == null) return;
+        bossbars.remove(bossbar);
+        ci.cancel();
+    }
 }
