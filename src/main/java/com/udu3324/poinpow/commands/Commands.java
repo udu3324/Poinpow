@@ -74,6 +74,11 @@ public class Commands {
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockRaids.name, BlockRaids.toggled, false))))
 
+                .then(literal(BlockChestAds.name)
+                        .executes(ctx -> description(ctx.getSource(), BlockChestAds.name, BlockChestAds.description, BlockChestAds.toggled))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockChestAds.name, BlockChestAds.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockChestAds.name, BlockChestAds.toggled, false))))
+
                 .then(literal(ToggleSpecificAds.name)
                         .executes(ctx -> ToggleSpecificAds.description(ctx.getSource()))
                         .then(literal("default").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "default")))
@@ -170,6 +175,13 @@ public class Commands {
                 .withColor(Formatting.DARK_GRAY)
         ));
 
+        //block chest ads
+        source.sendFeedback(Text.literal("[" + BlockChestAds.toggled + "] " + BlockChestAds.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(BlockChestAds.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + BlockChestAds.name + " " + !BlockChestAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
         //hub command back
         source.sendFeedback(Text.literal("[" + HubCommandBack.toggled + "] " + HubCommandBack.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(HubCommandBack.description + "\n\nClick to Toggle")))
@@ -198,7 +210,7 @@ public class Commands {
                 .withColor(Formatting.GRAY)
         ));
 
-        //credits + version
+        //credits <3
         source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Poinpow is by udu3324. \nFeedback can be sent through the repo by clicking.")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow"))

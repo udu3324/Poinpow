@@ -225,6 +225,7 @@ public class Config {
                     BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
                     HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
                     BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
+                    BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
 
                     ToggleSpecificAds.defaultRank = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_default"));
                     ToggleSpecificAds.vip = Boolean.parseBoolean(getValueFromConfig(ToggleSpecificAds.name + "_vip"));
@@ -254,6 +255,7 @@ public class Config {
         w.write(BlockLobbyMapAds.name + ": true" + System.lineSeparator());
         w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
+        w.write(BlockChestAds.name + ": true" + System.lineSeparator());
 
         w.write(ToggleSpecificAds.name + "_default: false" + System.lineSeparator());
         w.write(ToggleSpecificAds.name + "_vip: false" + System.lineSeparator());
