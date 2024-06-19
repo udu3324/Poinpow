@@ -23,11 +23,12 @@ public class BlockLobbyAds {
         //if it's not a suspected ad, return
         if (!(pattern.matcher(chat).find() || chat.contains(": /join"))) return false;
 
-        //since it's an ad, check the rank if its allowed
-        boolean yeah = ToggleSpecificAds.checkRank(chat);
+        //confirmed an ad
 
-        if (yeah) return false;
+        //check if the rank is allowed to send it, return to allow sending
+        if (ToggleSpecificAds.checkRank(chat)) return false;
 
+        Poinpow.log.info("Blocked: {}", chat.replace("\n", ""));
         ci.cancel();
 
         return true;
