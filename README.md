@@ -10,7 +10,7 @@
 [![Discord Server](https://img.shields.io/badge/Official%20Discord%20Server-7289DA?style=round&logo=discord&logoColor=white)](https://discord.gg/NXm9tJvyBT)
 
 # 📘 Features
-Poinpow is a Minecraft mod that adds **amazing features** that **makes the player experience 103% better**. (QoL) Features that Minehut locks behind a paywall (ex: removing ads, muting chat, etc.) are in Poinpow.
+Poinpow is a fabric mod that adds **amazing features** and **makes the player experience 103% better**. (QoL) Features that Minehut locks behind a paywall (ex: removing ads, muting chat, etc.) are in Poinpow.
 
 | Features          | Command                                                                                                |
 |:------------------|:-------------------------------------------------------------------------------------------------------|
