@@ -44,12 +44,12 @@ public class ToggleSpecificAds {
         //use mh api to get their rank instead of parsing untrusted chat
         String rank = Minehut.getRank(uuid);
 
-        //wi-fi errors, etc. no clue why this scenario would ever happen
+        //wi-fi errors, etc. no clue why this scenario would ever happen... :)
         if (rank == null) {
-            return false;
+            return fallback(chat);
         }
 
-        System.out.println("rank: " + rank);
+        //System.out.println("rank: " + rank);
 
         //check if their rank is toggled or not
         if (rank.equals("VIP") && vip) {
@@ -63,6 +63,24 @@ public class ToggleSpecificAds {
         } else if (rank.equals("PATRON") && patron) {
             return true;
         } else return rank.equals("DEFAULT") && defaultRank;
+    }
+
+    // fallback in case if mh api does not work (minehut sucks, and their staff are probably underpaid to do stuff)
+    private static boolean fallback(String chat) {
+        String rank = chat.substring(0, chat.indexOf(":"));
+
+        //check if the rank portion in chat contains it
+        if (rank.contains("[VIP]") && vip) {
+            return true;
+        } else if (rank.contains("[VIP+]") && vipPlus) {
+            return true;
+        } else if (rank.contains("[PRO]") && pro) {
+            return true;
+        } else if (rank.contains("[LEGEND]") && legend) {
+            return true;
+        } else if (rank.contains("[PATRON]") && patron) {
+            return true;
+        } else return !(rank.contains("[PATRON]") || rank.contains("[LEGEND]") || rank.contains("[PRO]") || rank.contains("[VIP+]") || rank.contains("[VIP]")) && defaultRank;
     }
 
     public static int toggle(FabricClientCommandSource source, String rank) {

@@ -3,7 +3,10 @@ package com.udu3324.poinpow.api;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.udu3324.poinpow.Poinpow;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -11,11 +14,25 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Minehut {
     public static Map<String, String> playerRank = new HashMap<>();
+
+    public static Boolean inLobby() {
+        if (MinecraftClient.getInstance().player == null) return null;
+
+        // check for scoreboard
+        Scoreboard scoreboard = MinecraftClient.getInstance().player.getScoreboard();
+        ArrayList<String> scores = new ArrayList<>();
+        for (ScoreboardObjective objective : scoreboard.getObjectives()) {
+            scores.add(objective.getDisplayName().toString());
+        }
+
+        return scores.toString().toLowerCase().contains("minehut");
+    }
 
     //(BuggyAl) this gets information about a server in json
     public static JsonObject getServer(ClientPlayerEntity player, String serverName) {
@@ -24,8 +41,12 @@ public class Minehut {
             HttpURLConnection connection = (HttpURLConnection) apiURL.openConnection();
             connection.setRequestMethod("GET");
 
-            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            if (connection.getResponseCode() == 500) {
                 player.sendMessage(Text.literal("Server not found! (" + connection.getResponseCode() + ")").styled(style -> style
+                        .withColor(Formatting.RED)));
+                return null;
+            } else if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) { // bruh
+                player.sendMessage(Text.literal("Server not found! API may be down. (" + connection.getResponseCode() + ")").styled(style -> style
                         .withColor(Formatting.RED)));
                 return null;
             }

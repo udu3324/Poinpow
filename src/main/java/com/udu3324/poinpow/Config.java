@@ -239,6 +239,8 @@ public class Config {
             BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
             BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
 
+            MuteLobbyChat.toggled = Boolean.parseBoolean(getValueFromConfig(MuteLobbyChat.name));
+
             defaultRank = Boolean.parseBoolean(getValueFromConfig(name + "_default"));
             vip = Boolean.parseBoolean(getValueFromConfig(name + "_vip"));
             vipPlus = Boolean.parseBoolean(getValueFromConfig(name + "_vipPlus"));
@@ -268,6 +270,7 @@ public class Config {
         w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
         w.write(BlockChestAds.name + ": true" + System.lineSeparator());
+        w.write(MuteLobbyChat.name + ": false" + System.lineSeparator());
 
         w.write(name + "_default: false" + System.lineSeparator());
         w.write(name + "_vip: false" + System.lineSeparator());

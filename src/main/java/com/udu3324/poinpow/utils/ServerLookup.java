@@ -8,6 +8,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.udu3324.poinpow.Poinpow;
 import com.udu3324.poinpow.api.Minehut;
+import com.udu3324.poinpow.commands.Commands;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
@@ -55,6 +56,8 @@ public class ServerLookup {
             if (response.get("online").getAsBoolean()) {
                 status = Formatting.GREEN + "Online";
             }
+
+            Commands.running = true;
 
             player.sendMessage(Text.literal(""));
             player.sendMessage(Text.literal(serverName + " is ").styled(style -> style
@@ -104,6 +107,8 @@ public class ServerLookup {
             }
 
             player.sendMessage(Text.literal(""));
+
+            Commands.running = false;
         }).start();
 
         return Command.SINGLE_SUCCESS;
