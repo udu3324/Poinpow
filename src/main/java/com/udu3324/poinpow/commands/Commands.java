@@ -23,6 +23,7 @@ public class Commands {
     //register poinpow commands in the mc brigadier
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         ServerLookup.registerCommand(dispatcher);
+        MuteLobbyChat.registerCommand(dispatcher);
 
         dispatcher.register(literal("poinpow")
                 .executes(ctx -> help(ctx.getSource()))
@@ -190,6 +191,13 @@ public class Commands {
         source.sendFeedback(Text.literal("[" + HubCommandBack.toggled + "] " + HubCommandBack.name).styled(style -> style
                 .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(HubCommandBack.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + HubCommandBack.name + " " + !HubCommandBack.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //toggle lobby chat
+        source.sendFeedback(Text.literal("[" + MuteLobbyChat.toggled + "] " + MuteLobbyChat.name).styled(style -> style
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(MuteLobbyChat.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + MuteLobbyChat.name))
                 .withColor(Formatting.DARK_GRAY)
         ));
 

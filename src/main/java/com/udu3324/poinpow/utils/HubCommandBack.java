@@ -7,7 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.command.CommandSource;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -17,7 +17,7 @@ public class HubCommandBack {
 
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
-    public static void scan(String msg, CallbackInfoReturnable<Boolean> cir) {
+    public static void scan(String msg, CallbackInfo ci) {
         // return if toggled off (no need for bool)
         if (!toggled.get()) return;
 
@@ -35,7 +35,7 @@ public class HubCommandBack {
         if (isCommandRegistered(dispatcher, "hub")) return;
 
         // Prevent original message from sending
-        cir.setReturnValue(true);
+        ci.cancel();
 
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null) return;
