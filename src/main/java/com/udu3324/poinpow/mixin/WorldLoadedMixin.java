@@ -3,6 +3,7 @@ package com.udu3324.poinpow.mixin;
 import com.udu3324.poinpow.Poinpow;
 import com.udu3324.poinpow.api.GitHubVersion;
 import com.udu3324.poinpow.utils.AutoSkipBarrier;
+import com.udu3324.poinpow.utils.MuteLobbyChat;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
@@ -28,5 +29,8 @@ public class WorldLoadedMixin {
         if (Poinpow.onMinehut) GitHubVersion.check();
 
         AutoSkipBarrier.check();
+
+        //allow to send a check only once cause chat gets rendered per tick
+        MuteLobbyChat.canSendCheck = true;
     }
 }

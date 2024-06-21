@@ -1,19 +1,16 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
-import net.minecraft.client.MinecraftClient;
+import com.udu3324.poinpow.api.Minehut;
 import net.minecraft.client.gui.hud.ClientBossBar;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -31,16 +28,8 @@ public class BlockLobbyMapAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return;
 
-        if (MinecraftClient.getInstance().player == null) return;
-
-        // check for scoreboard
-        Scoreboard scoreboard = MinecraftClient.getInstance().player.getScoreboard();
-        ArrayList<String> scores = new ArrayList<>();
-        for (ScoreboardObjective objective : scoreboard.getObjectives()) {
-            scores.add(objective.getDisplayName().toString());
-        }
-
-        if (!scores.toString().toLowerCase().contains("minehut")) return;
+        Boolean inLobby = Minehut.inLobby();
+        if (inLobby == null || !inLobby) return;
 
         // remove if item frame has a map in it
         ItemFrameEntity itemFrame = (ItemFrameEntity) entity;
