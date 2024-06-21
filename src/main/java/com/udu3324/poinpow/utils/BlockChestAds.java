@@ -1,7 +1,6 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.Slot;
@@ -13,6 +12,8 @@ public class BlockChestAds {
     public static String name = "block_chest_ads";
     public static String description = "This removes the ads in the compass server listing.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
+
+    private static final ItemStack item = Items.BLACK_STAINED_GLASS_PANE.getDefaultStack().setCustomName(Text.literal(""));
 
     public static void check(Slot slot) {
         // return false if toggled off
@@ -26,9 +27,6 @@ public class BlockChestAds {
         if (name.equals("Air")) return;
 
         if (name.contains("[AD]")) {
-            ItemStack item = Items.BLACK_STAINED_GLASS_PANE.getDefaultStack();
-            item.set(DataComponentTypes.CUSTOM_NAME, Text.literal(""));
-
             slot.setStack(item);
         }
     }

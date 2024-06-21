@@ -45,8 +45,8 @@ public class ChatMixin {
         ChatPhraseFilter.check(chat, ci);
     }
 
-    @Inject(method = "Lnet/minecraft/client/gui/hud/ChatHud;render(Lnet/minecraft/client/gui/DrawContext;IIIZ)V", at = @At("RETURN"), cancellable = true)
-    private void onRender(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, CallbackInfo ci) {
+    @Inject(method = "Lnet/minecraft/client/gui/hud/ChatHud;render(Lnet/minecraft/client/gui/DrawContext;III)V", at = @At("RETURN"), cancellable = true)
+    private void onRender(DrawContext context, int currentTick, int mouseX, int mouseY, CallbackInfo ci) {
         MuteLobbyChat.check();
     }
 }
