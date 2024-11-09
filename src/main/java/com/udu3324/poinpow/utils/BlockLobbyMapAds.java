@@ -3,9 +3,7 @@ package com.udu3324.poinpow.utils;
 import com.udu3324.poinpow.Poinpow;
 import com.udu3324.poinpow.api.Minehut;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.minecraft.client.render.entity.state.ItemFrameEntityRenderState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
@@ -21,7 +19,7 @@ public class BlockLobbyMapAds {
 
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
-    public static void block(Entity entity) {
+    public static void block(ItemFrameEntityRenderState ifr) {
         // return if toggled off (no need for bool)
         if (!toggled.get()) return;
 
@@ -32,17 +30,14 @@ public class BlockLobbyMapAds {
         if (inLobby == null || !inLobby) return;
 
         // remove if item frame has a map in it
-        ItemFrameEntity itemFrame = (ItemFrameEntity) entity;
+        if (ifr.contents.getItem() != Items.FILLED_MAP.getDefaultStack().getItem()) return;
 
-        if (!itemFrame.containsMap()) return;
+        //Poinpow.log.info("Blocked: Lobby Map Ad ({}, {}, {})", ifr.x, ifr.y, ifr.z);
 
-        //Poinpow.log.info("Blocked: Lobby Map Ad (" + itemFrame.getBlockX() + ", " + itemFrame.getBlockY() + ", " + itemFrame.getBlockZ() + ")");
+        //ItemStack item = Items.DIAMOND.getDefaultStack();
+        //item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Poinpow by udu3324"));
 
-        ItemStack item = Items.DIAMOND.getDefaultStack();
-        item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Poinpow by udu3324"));
-
-        itemFrame.setHeldItemStack(item);
-        itemFrame.setRotation(1);
+        ifr.contents = ItemStack.EMPTY;
     }
 
     public static boolean checkActionbar(String actionbar, CallbackInfo ci) {

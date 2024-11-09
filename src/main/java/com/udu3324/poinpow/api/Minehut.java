@@ -43,11 +43,11 @@ public class Minehut {
 
             if (connection.getResponseCode() == 500) {
                 player.sendMessage(Text.literal("Server not found! (" + connection.getResponseCode() + ")").styled(style -> style
-                        .withColor(Formatting.RED)));
+                        .withColor(Formatting.RED)), false);
                 return null;
             } else if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) { // bruh
                 player.sendMessage(Text.literal("Server not found! API may be down. (" + connection.getResponseCode() + ")").styled(style -> style
-                        .withColor(Formatting.RED)));
+                        .withColor(Formatting.RED)), false);
                 return null;
             }
 
@@ -58,7 +58,7 @@ public class Minehut {
             return obj;
         } catch (Exception e) {
             Poinpow.log.error("Error while looking up server: {} - {}", serverName, e);
-            player.sendMessage(Text.literal("Response to minehut api was unsuccessful. Server name: " + serverName));
+            player.sendMessage(Text.literal("Response to minehut api was unsuccessful. Server name: " + serverName), false);
             return null;
         }
     }

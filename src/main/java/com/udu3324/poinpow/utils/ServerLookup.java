@@ -59,11 +59,13 @@ public class ServerLookup {
 
             Commands.running = true;
 
-            player.sendMessage(Text.literal(""));
+            player.sendMessage(Text.literal(""), false);
+            player.sendMessage(Text.literal("this aint a overlay"), false);
+            player.sendMessage(Text.literal("this is a overlay woo"), true);
             player.sendMessage(Text.literal(serverName + " is ").styled(style -> style
                             .withColor(Formatting.GOLD))
                     .append(status)
-            );
+            , false);
 
             // print out each entry in the response and its value
             Set<Map.Entry<String, JsonElement>> entries = response.entrySet();
@@ -82,31 +84,31 @@ public class ServerLookup {
                 JsonElement value = entry.getValue();
                 if (key.equals("creation") || key.equals("last_online")) { // format dates
                     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy 'at' h:mm a");
-                    player.sendMessage(generateStat(key, dateFormat.format(value.getAsLong())));
+                    player.sendMessage(generateStat(key, dateFormat.format(value.getAsLong())), false);
                     continue;
                 } else if (key.equals("activeServerPlan")) { // format server plan
                     String rawPlan = response.get("rawPlan").getAsString();
                     if (!rawPlan.isEmpty()) {
-                        player.sendMessage(generateStat(key, value.getAsString() + " (" + rawPlan + ")"));
+                        player.sendMessage(generateStat(key, value.getAsString() + " (" + rawPlan + ")"), false);
                         continue;
                     }
                 }
 
                 if (value.isJsonPrimitive()) {
-                    player.sendMessage(generateStat(key, value.getAsString()));
+                    player.sendMessage(generateStat(key, value.getAsString()), false);
                 } else if (value.isJsonArray()) {
                     JsonArray array = value.getAsJsonArray();
                     if (array.isEmpty()) {
-                        player.sendMessage(generateStat(key, "None!"));
+                        player.sendMessage(generateStat(key, "None!"), false);
                     } else {
                         AtomicReference<String> arrayString = new AtomicReference<>("");
                         array.forEach(element -> arrayString.set(arrayString + element.getAsString() + ", "));
-                        player.sendMessage(generateStat(key, arrayString.get()));
+                        player.sendMessage(generateStat(key, arrayString.get()), false);
                     }
                 }
             }
 
-            player.sendMessage(Text.literal(""));
+            player.sendMessage(Text.literal(""), false);
 
             Commands.running = false;
         }).start();
