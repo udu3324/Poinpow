@@ -1,7 +1,6 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
-import net.minecraft.client.sound.Sound;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.ItemStack;
@@ -31,10 +30,6 @@ public class BlockChestAds {
             item.set(DataComponentTypes.LORE, new LoreComponent(Text.literal("Blocked by Poinpow").getWithStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY).withItalic(false))));
             slot.setStack(item);
         }
-    }
-
-    public static void checkSound(Sound sound) {
-        sound.getIdentifier().toTranslationKey();
     }
 
 }
