@@ -1,11 +1,11 @@
 package com.udu3324.poinpow.utils;
 
+import com.mojang.brigadier.Command;
 import com.udu3324.poinpow.Config;
 import com.udu3324.poinpow.api.Minecraft;
 import com.udu3324.poinpow.api.Minehut;
 import com.udu3324.poinpow.commands.Commands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import com.mojang.brigadier.Command;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -80,7 +80,8 @@ public class ToggleSpecificAds {
             return true;
         } else if (rank.contains("[PATRON]") && patron) {
             return true;
-        } else return !(rank.contains("[PATRON]") || rank.contains("[LEGEND]") || rank.contains("[PRO]") || rank.contains("[VIP+]") || rank.contains("[VIP]")) && defaultRank;
+        } else
+            return !(rank.contains("[PATRON]") || rank.contains("[LEGEND]") || rank.contains("[PRO]") || rank.contains("[VIP+]") || rank.contains("[VIP]")) && defaultRank;
     }
 
     public static int toggle(FabricClientCommandSource source, String rank) {
@@ -133,7 +134,7 @@ public class ToggleSpecificAds {
         source.sendFeedback(Text.literal(description));
         source.sendFeedback(Text.literal("Default: " + defaultRank + "\nVIP: " + vip + "\nVIP+: " + vipPlus + "\nPro: " + pro + "\nLegend: " + legend + "\nPatron: " + patron).styled(style -> style
                 .withColor(Formatting.GRAY)
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + ToggleSpecificAds.name + " "))));
+                .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + ToggleSpecificAds.name + " "))));
 
         Commands.running = false;
         return Command.SINGLE_SUCCESS;

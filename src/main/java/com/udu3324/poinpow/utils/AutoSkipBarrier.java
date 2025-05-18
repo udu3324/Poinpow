@@ -41,7 +41,7 @@ public class AutoSkipBarrier {
                         items = client.player.getInventory().getStack(itemIterator);
 
                         if (items.getName().getString().equals("Right click to continue")) {
-                            client.player.getInventory().selectedSlot = itemIterator;
+                            client.player.getInventory().setSelectedSlot(itemIterator);
                             client.interactionManager.interactItem(client.player, client.player.getActiveHand());
 
                             Poinpow.log.info("AutoSkipBarrier: Found item! Attempting to skip...");

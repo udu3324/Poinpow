@@ -1,13 +1,14 @@
 package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
+import net.minecraft.client.sound.Sound;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,19 +25,16 @@ public class BlockChestAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return;
 
-        Text name = slot.getStack().getName();
-
-        if (name.getString().equals("Air")) return;
-
-        if (name.withoutStyle().size() < 2) return;
-
-        Style style = name.withoutStyle().get(1).getStyle();
-
-        if (style.getColor() == TextColor.fromFormatting(Formatting.DARK_GRAY)) {
-            ItemStack item = Items.BLACK_STAINED_GLASS_PANE.getDefaultStack();
-            item.set(DataComponentTypes.CUSTOM_NAME, Text.literal(""));
-
+        if (slot.getStack().getName().toString().contains("ᴀᴅ")) {
+            ItemStack item = Items.DIAMOND.getDefaultStack();
+            item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Server Advertisement").getWithStyle(Style.EMPTY.withColor(Formatting.AQUA).withBold(true).withItalic(false)).getFirst());
+            item.set(DataComponentTypes.LORE, new LoreComponent(Text.literal("Blocked by Poinpow").getWithStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY).withItalic(false))));
             slot.setStack(item);
         }
     }
+
+    public static void checkSound(Sound sound) {
+        sound.getIdentifier().toTranslationKey();
+    }
+
 }

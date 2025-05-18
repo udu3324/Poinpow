@@ -278,7 +278,7 @@ public class Config {
         w.write(name + "_pro: false" + System.lineSeparator());
         w.write(name + "_legend: false" + System.lineSeparator());
         w.write(name + "_patron: false" + System.lineSeparator());
-        
+
         w.write(System.lineSeparator());
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
         w.write("this_is_a_example");

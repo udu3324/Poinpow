@@ -10,21 +10,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Poinpow implements ModInitializer {
-	public static final Logger log = LoggerFactory.getLogger("poinpow");
-	public static Boolean onMinehut = false;
+    public static final Logger log = LoggerFactory.getLogger("poinpow");
+    public static Boolean onMinehut = false;
 
-	@Override
-	public void onInitialize() {
+    public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
+        Commands.register(dispatcher);
+    }
+
+    @Override
+    public void onInitialize() {
         log.info("udu3324 was here!!! | poinpow v{}", Config.version);
 
-		// register the commands
-		ClientCommandRegistrationCallback.EVENT.register(Poinpow::registerCommands);
+        // register the commands
+        ClientCommandRegistrationCallback.EVENT.register(Poinpow::registerCommands);
 
-		// create a config
-		Config.create();
-	}
-
-	public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
-		Commands.register(dispatcher);
-	}
+        // create a config
+        Config.create();
+    }
 }

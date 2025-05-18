@@ -13,6 +13,7 @@ import net.minecraft.util.Formatting;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,7 +73,7 @@ public class Minehut {
                 return playerRank.get(uuid);
             }
 
-            URL apiURL = new URL("https://api.minehut.com/cosmetics/profile/" + uuid);
+            URL apiURL = new URI("https://api.minehut.com/cosmetics/profile/" + uuid).toURL();
             HttpURLConnection connection = (HttpURLConnection) apiURL.openConnection();
             connection.setRequestMethod("GET");
 

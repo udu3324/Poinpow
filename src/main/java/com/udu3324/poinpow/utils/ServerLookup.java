@@ -16,6 +16,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.Set;
@@ -23,7 +24,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ServerLookup {
     public static final String name = "lookupServer";
-    public static final String description = "Lookup a server on minehut to see detailed information about it. Contributed by BuggyAI on Github.";
+    public static final String description = "Lookup a server on minehut to see detailed information about it. Contributed by BuggyAl on Github.";
 
     public static void registerCommand(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(ClientCommandManager.literal(name).executes(context -> usage(context.getSource())).then(
@@ -63,9 +64,9 @@ public class ServerLookup {
             player.sendMessage(Text.literal("this aint a overlay"), false);
             player.sendMessage(Text.literal("this is a overlay woo"), true);
             player.sendMessage(Text.literal(serverName + " is ").styled(style -> style
-                            .withColor(Formatting.GOLD))
-                    .append(status)
-            , false);
+                                    .withColor(Formatting.GOLD))
+                            .append(status)
+                    , false);
 
             // print out each entry in the response and its value
             Set<Map.Entry<String, JsonElement>> entries = response.entrySet();

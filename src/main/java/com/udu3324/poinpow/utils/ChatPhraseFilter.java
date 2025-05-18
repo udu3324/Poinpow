@@ -107,7 +107,7 @@ public class ChatPhraseFilter {
         }
 
         context.getSource().sendFeedback(Text.literal("Couldn't find \"" + input + "\" in the list of regex! \nDo \"/poinpow " + name + " list\" to see a clickable list to remove regex.").styled(style -> style
-                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + name + " list"))
+                .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + name + " list"))
                 .withUnderline(true)
                 .withColor(Formatting.RED)
         ));
@@ -134,7 +134,7 @@ public class ChatPhraseFilter {
 
         for (Pattern p : list) {
             source.sendFeedback(Text.literal(p.toString()).styled(style -> style
-                    .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/poinpow " + name + " remove " + "\"" + p + "\""))
+                    .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + name + " remove " + "\"" + p + "\""))
                     .withColor(Formatting.GOLD)
             ));
         }
