@@ -1,9 +1,11 @@
 package com.udu3324.poinpow.mixin;
 
 import com.udu3324.poinpow.utils.BlockLobbyMapAds;
+import com.udu3324.poinpow.utils.BlockRaids;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,10 +24,18 @@ public class BossbarMixin {
     @Shadow
     private Map<UUID, ClientBossBar> bossBars;
 
-    @Inject(method = "handlePacket", at = @At("HEAD"), cancellable = true)
-    private void onBossbarRender(BossBarS2CPacket packet, CallbackInfo ci) {
-        BlockLobbyMapAds.checkBossbar(bossBars, ci);
-        //todo fix blockRaids as the client still tries to update the bossbar causing errors
-        //BlockRaids.checkBossbar(bossBars, ci);
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
+    private void onBossbarRender(DrawContext drawContext, CallbackInfo ci) {
+        if (bossBars.isEmpty()) return;
+
+        bossBars.values().forEach(clientBossBar -> {
+            String displayText = clientBossBar.getName().getString();
+
+            if (BlockLobbyMapAds.checkBossbar(displayText)) {
+                clientBossBar.setName(Text.literal(""));
+            } else if (BlockRaids.checkBossbar(displayText)) {
+                clientBossBar.setName(Text.literal(""));
+            }
+        });
     }
 }
