@@ -36,6 +36,7 @@ public class Minehut {
     }
 
     //(BuggyAl) this gets information about a server in json
+    @Deprecated
     public static JsonObject getServer(ClientPlayerEntity player, String serverName) {
         try {
             URL apiURL = new URL("https://api.minehut.com/server/" + serverName + "?byName=true");
@@ -65,6 +66,7 @@ public class Minehut {
     }
 
     //this gets a player's mh rank through their uuid, has to have dashes in
+    @Deprecated
     public static String getRank(String uuid) {
         try {
             //check if rank of player already has been cached

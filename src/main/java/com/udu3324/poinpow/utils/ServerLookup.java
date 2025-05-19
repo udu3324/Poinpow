@@ -26,6 +26,8 @@ public class ServerLookup {
     public static final String name = "lookupServer";
     public static final String description = "Lookup a server on minehut to see detailed information about it. Contributed by BuggyAl on Github.";
 
+    public static Boolean understoodRisks = false;
+
     public static void registerCommand(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(ClientCommandManager.literal(name).executes(context -> usage(context.getSource())).then(
                 ClientCommandManager.argument("serverName", StringArgumentType.string()).executes(ctx -> lookup(StringArgumentType.getString(ctx, "serverName")))
@@ -48,6 +50,16 @@ public class ServerLookup {
                 return;
             }
 
+            Commands.running = true;
+
+            if (!understoodRisks) {
+                player.sendMessage(Text.literal("Using the Minehut API is at your own risk. Running this command again indicates that you accept full liability. (will reset next session)")
+                        .styled(style -> style.withColor(Formatting.DARK_RED).withBold(true)), false);
+
+                understoodRisks = true;
+                return;
+            }
+
             // send api request to https://api.minehut.com/server/{serverName}?byName=true
             JsonObject response = Minehut.getServer(player, serverName);
 
@@ -58,15 +70,10 @@ public class ServerLookup {
                 status = Formatting.GREEN + "Online";
             }
 
-            Commands.running = true;
-
             player.sendMessage(Text.literal(""), false);
-            player.sendMessage(Text.literal("this aint a overlay"), false);
-            player.sendMessage(Text.literal("this is a overlay woo"), true);
             player.sendMessage(Text.literal(serverName + " is ").styled(style -> style
-                                    .withColor(Formatting.GOLD))
-                            .append(status)
-                    , false);
+                            .withColor(Formatting.GOLD))
+                            .append(status), false);
 
             // print out each entry in the response and its value
             Set<Map.Entry<String, JsonElement>> entries = response.entrySet();
