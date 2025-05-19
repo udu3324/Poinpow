@@ -2,6 +2,7 @@ name: Build
 
 on:
   push:
+  pull_request:
 
 jobs:
   build:
@@ -14,6 +15,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 21
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Build with Gradle
