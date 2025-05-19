@@ -17,6 +17,7 @@ public class BlockRaids {
 
     final static Pattern pattern = Pattern.compile("Minehut \\| Raid starts in [0-9]+ Seconds!");
     final static Pattern pattern2 = Pattern.compile("Minehut \\| A new raid is ready! Enter the green circle to begin\\.");
+    final static Pattern pattern3 = Pattern.compile("Minehut \\| Raiding is on cooldown for another [0-9]+ Second(s|)\\.");
 
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
@@ -25,7 +26,7 @@ public class BlockRaids {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        if (pattern.matcher(chat).find() || pattern2.matcher(chat).find()) {
+        if (pattern.matcher(chat).find() || pattern2.matcher(chat).find() || pattern3.matcher(chat).find()) {
             Poinpow.log.info("Blocked: {}", chat);
             ci.cancel();
         }

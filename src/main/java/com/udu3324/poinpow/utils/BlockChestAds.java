@@ -25,8 +25,8 @@ public class BlockChestAds {
         if (!Poinpow.onMinehut) return;
 
         if (slot.getStack().getName().toString().contains("ᴀᴅ")) {
-            ItemStack item = Items.DIAMOND.getDefaultStack();
-            item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Server Advertisement").getWithStyle(Style.EMPTY.withColor(Formatting.AQUA).withBold(true).withItalic(false)).getFirst());
+            ItemStack item = Items.BLACK_STAINED_GLASS_PANE.getDefaultStack();
+            item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Server Advertisement").getWithStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY).withBold(true).withItalic(false)).getFirst());
             item.set(DataComponentTypes.LORE, new LoreComponent(Text.literal("Blocked by Poinpow").getWithStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY).withItalic(false))));
             slot.setStack(item);
         }

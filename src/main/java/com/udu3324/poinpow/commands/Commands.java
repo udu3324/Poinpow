@@ -217,11 +217,11 @@ public class Commands {
         ));
 
         //lookup server
-        source.sendFeedback(Text.literal("/" + ServerLookup.name + " <serverName>").styled(style -> style
-                .withHoverEvent(new HoverEvent.ShowText(Text.literal(ServerLookup.description + "\n\nClick to lookup a server!")))
-                .withClickEvent(new ClickEvent.SuggestCommand("/" + ServerLookup.name + " "))
-                .withColor(Formatting.GRAY)
-        ));
+        //source.sendFeedback(Text.literal("/" + ServerLookup.name + " <serverName>").styled(style -> style
+        //        .withHoverEvent(new HoverEvent.ShowText(Text.literal(ServerLookup.description + "\n\nClick to lookup a server!")))
+        //        .withClickEvent(new ClickEvent.SuggestCommand("/" + ServerLookup.name + " "))
+        //        .withColor(Formatting.GRAY)
+        //));
 
         //credits <3
         source.sendFeedback(Text.literal("[+] Poinpow v" + Config.version + " by udu3324 [+]").styled(style -> style
