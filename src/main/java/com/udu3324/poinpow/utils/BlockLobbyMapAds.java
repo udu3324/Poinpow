@@ -3,6 +3,8 @@ package com.udu3324.poinpow.utils;
 import com.udu3324.poinpow.Poinpow;
 import com.udu3324.poinpow.api.Minehut;
 import net.minecraft.client.render.entity.state.ItemFrameEntityRenderState;
+import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
+import net.minecraft.sound.SoundCategory;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -53,5 +55,22 @@ public class BlockLobbyMapAds {
         }
 
         return false;
+    }
+
+    public static boolean checkSound(PlaySoundS2CPacket packet) {
+        // return false if toggled off
+        if (!toggled.get()) return false;
+
+        // return if not on minehut
+        if (!Poinpow.onMinehut) return false;
+
+        // played as an ambient sound
+        if (packet.getCategory() != SoundCategory.AMBIENT) return false;
+
+        // unregistered
+        if (!packet.getSound().getIdAsString().equals("[unregistered]")) return false;
+
+        Poinpow.log.info("Blocking sound from map ad");
+        return true;
     }
 }
