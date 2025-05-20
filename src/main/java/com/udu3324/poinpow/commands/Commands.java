@@ -82,11 +82,6 @@ public class Commands {
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockChestAds.name, BlockChestAds.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockChestAds.name, BlockChestAds.toggled, false))))
 
-                .then(literal(BlockSoundAds.name)
-                        .executes(ctx -> description(ctx.getSource(), BlockSoundAds.name, BlockSoundAds.description, BlockSoundAds.toggled))
-                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockSoundAds.name, BlockSoundAds.toggled, true)))
-                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockSoundAds.name, BlockSoundAds.toggled, false))))
-
                 .then(literal(ToggleSpecificAds.name)
                         .executes(ctx -> ToggleSpecificAds.description(ctx.getSource()))
                         .then(literal("default").executes(ctx -> ToggleSpecificAds.toggle(ctx.getSource(), "default")))
@@ -141,13 +136,6 @@ public class Commands {
         source.sendFeedback(Text.literal("[" + AutoSkipBarrier.toggled + "] " + AutoSkipBarrier.name).styled(style -> style
                 .withHoverEvent(new HoverEvent.ShowText(Text.literal(AutoSkipBarrier.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + AutoSkipBarrier.name + " " + !AutoSkipBarrier.toggled.get()))
-                .withColor(Formatting.DARK_GRAY)
-        ));
-
-        //block sound ads
-        source.sendFeedback(Text.literal("[" + BlockSoundAds.toggled + "] " + BlockSoundAds.name).styled(style -> style
-                .withHoverEvent(new HoverEvent.ShowText(Text.literal(BlockSoundAds.description + "\n\nClick to Toggle")))
-                .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + BlockSoundAds.name + " " + !BlockSoundAds.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 

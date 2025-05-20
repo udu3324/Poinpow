@@ -1,6 +1,6 @@
 package com.udu3324.poinpow.mixin;
 
-import com.udu3324.poinpow.utils.BlockSoundAds;
+import com.udu3324.poinpow.utils.BlockLobbyMapAds;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SoundMixin {
     @Inject(method = "onPlaySound", at = @At("HEAD"), cancellable = true)
     private void onPlaySound(PlaySoundS2CPacket packet, CallbackInfo ci) {
-        if (BlockSoundAds.removeSound(packet)) {
+        if (BlockLobbyMapAds.checkSound(packet)) {
             ci.cancel();
         }
     }

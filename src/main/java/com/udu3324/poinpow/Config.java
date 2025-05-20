@@ -238,7 +238,6 @@ public class Config {
             HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
             BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockRaids.name)));
             BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
-            BlockSoundAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockSoundAds.name)));
 
             MuteLobbyChat.toggled = Boolean.parseBoolean(getValueFromConfig(MuteLobbyChat.name));
 
@@ -271,7 +270,6 @@ public class Config {
         w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
         w.write(BlockChestAds.name + ": true" + System.lineSeparator());
-        w.write(BlockSoundAds.name + ": true" + System.lineSeparator());
         w.write(MuteLobbyChat.name + ": false" + System.lineSeparator());
 
         w.write(name + "_default: false" + System.lineSeparator());
