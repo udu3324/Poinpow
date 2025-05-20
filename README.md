@@ -22,8 +22,7 @@ Poinpow is a fabric mod that adds **amazing features** and **makes the player ex
 | MuteLobbyChat        | A command that mutes Minehut's lobby, only allowing `/msg`, joins, and some other stuff.                                          |
 | HubCommandBack       | Adds back the `/hub` command. It redirects the command `/hub` to `/mh` when necessary.                                            |
 | BlockChestAds        | Removes the ads inside the compass server listing in hub.                                                                         |
-| BlockLobbyMapAds     | Removes the humungous map art that advertises things in lobby.                                                                    |
-| BlockSoundAds        | Blocks the sound ads played in lobby from the server texture pack.                                                                |
+| BlockLobbyMapAds     | Removes the humungous map art that advertises things in lobby. It also mutes the sound played if present.                         |
 | BlockLobbyWelcome    | Blocks the lobby join message that sometimes has an ad in it.                                                                     |
 | BlockRaids           | Blocks the raid messages in hub.                                                                                                  |
 | BlockFreeCredits     | Blocks the vote messages encouraging to vote for free credits.                                                                    |
