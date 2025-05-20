@@ -70,6 +70,7 @@ public class BlockLobbyMapAds {
         // unregistered
         if (!packet.getSound().getIdAsString().equals("[unregistered]")) return false;
 
+        Poinpow.log.info("Blocking sound from map ad");
         return true;
     }
 }
