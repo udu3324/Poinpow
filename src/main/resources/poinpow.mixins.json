@@ -11,6 +11,7 @@
     "ChestMixin",
     "ClientChatMixin",
     "MapMixin",
+    "SoundMixin",
     "WorldLoadedMixin"
   ],
   "injectors": {
