@@ -2,15 +2,9 @@ package com.udu3324.poinpow.utils;
 
 import com.udu3324.poinpow.Poinpow;
 import com.udu3324.poinpow.api.Minehut;
-import net.minecraft.client.gui.hud.ClientBossBar;
 import net.minecraft.client.render.entity.state.ItemFrameEntityRenderState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BlockLobbyMapAds {
@@ -30,22 +24,14 @@ public class BlockLobbyMapAds {
         if (inLobby == null || !inLobby) return;
 
         // remove if item frame has a map in it
-        if (ifr.contents.getItem() != Items.FILLED_MAP.getDefaultStack().getItem()) return;
+        if (ifr.mapId == null) return;
+        ifr.mapId = null;
 
-        //Poinpow.log.info("Blocked: Lobby Map Ad ({}, {}, {})", ifr.x, ifr.y, ifr.z);
-
-        //ItemStack item = Items.DIAMOND.getDefaultStack();
-        //item.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Poinpow by udu3324"));
-
-        ifr.contents = ItemStack.EMPTY;
     }
 
     public static boolean checkActionbar(String actionbar, CallbackInfo ci) {
         // return false if toggled off
-        if (!toggled.get()) return false;
-
-        // return if not on minehut
-        if (!Poinpow.onMinehut) return false;
+        if (!toggled.get() || !Poinpow.onMinehut) return false;
 
         //text when hovering over map ads in lobby
         if (actionbar.contains("[Billboard]")) {
@@ -55,33 +41,17 @@ public class BlockLobbyMapAds {
         return true;
     }
 
-    public static boolean checkBossbar(Map<UUID, ClientBossBar> bossbars, CallbackInfo ci) {
+    public static boolean checkBossbar(String text) {
         // return false if toggled off
         if (!toggled.get()) return false;
 
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        //return if bossbars is empty
-        if (bossbars.isEmpty()) return false;
-
-        //check all the bossbars present
-        UUID bossbar = null;
-
-        for (Map.Entry<UUID, ClientBossBar> entry : bossbars.entrySet()) {
-            Text text = entry.getValue().getName();
-
-            if (text.getString().contains("[Billboard]")) {
-                bossbar = entry.getKey();
-                break;
-            }
+        if (text.contains("[Billboard]")) {
+            return true;
         }
 
-        if (bossbar == null) return false;
-
-        bossbars.remove(bossbar);
-        ci.cancel();
-
-        return true;
+        return false;
     }
 }

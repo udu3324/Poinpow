@@ -236,8 +236,9 @@ public class Config {
             BlockFreeCredits.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockFreeCredits.name)));
             BlockLobbyMapAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockLobbyMapAds.name)));
             HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
-            BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
+            BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockRaids.name)));
             BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
+            BlockSoundAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockSoundAds.name)));
 
             MuteLobbyChat.toggled = Boolean.parseBoolean(getValueFromConfig(MuteLobbyChat.name));
 
@@ -270,6 +271,7 @@ public class Config {
         w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
         w.write(BlockChestAds.name + ": true" + System.lineSeparator());
+        w.write(BlockSoundAds.name + ": true" + System.lineSeparator());
         w.write(MuteLobbyChat.name + ": false" + System.lineSeparator());
 
         w.write(name + "_default: false" + System.lineSeparator());
@@ -278,8 +280,9 @@ public class Config {
         w.write(name + "_pro: false" + System.lineSeparator());
         w.write(name + "_legend: false" + System.lineSeparator());
         w.write(name + "_patron: false" + System.lineSeparator());
-        
+
         w.write(System.lineSeparator());
+
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
         w.write("this_is_a_example");
         w.close();

@@ -48,20 +48,18 @@ public class MuteLobbyChat {
     }
 
     public static boolean isAllowed(String chat) {
-        if (MinecraftClient.getInstance().player == null || MinecraftClient.getInstance().player.getName().getLiteralString() == null) return false;
+        if (MinecraftClient.getInstance().player == null || MinecraftClient.getInstance().player.getName().getLiteralString() == null)
+            return false;
 
         //it is a /msg from someone
-        if (chat.startsWith("To") || chat.startsWith("From")) {
-            //it is a /msg from someone
+        if (chat.startsWith("To") || chat.startsWith("From")) { //it is a /msg from someone
             return true;
-        } else if (!chat.contains(":")) {
-            //misc message should be allowed
-            return true;
-        } else if (chat.toLowerCase().contains(MinecraftClient.getInstance().player.getName().getLiteralString().toLowerCase())) {
-            //messages with the player's ign
-            return true;
-        } else {
-            return false;
+        } else { //messages with the player's ign
+            if (!chat.contains(":")) { //misc message should be allowed
+                return true;
+            } else {
+                return chat.toLowerCase().contains(MinecraftClient.getInstance().player.getName().getLiteralString().toLowerCase());
+            }
         }
     }
 
@@ -74,7 +72,7 @@ public class MuteLobbyChat {
         Boolean inLobby = Minehut.inLobby();
         if (inLobby != null && inLobby) {
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Lobby is currently muted by you. (click)").styled(style -> style
-                    .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + MuteLobbyChat.name))
+                    .withClickEvent(new ClickEvent.RunCommand("/" + MuteLobbyChat.name))
                     .withColor(Formatting.DARK_GRAY)));
         }
 

@@ -11,10 +11,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class GitHubVersion {
+    //this checks the current and latest version of poinpow to then send an alert to update
+    private static boolean canSend = true;
+
     //this gets the latest version of poinpow released
     private static String get() {
         try {
@@ -54,8 +58,6 @@ public class GitHubVersion {
         return null;
     }
 
-    //this checks the current and latest version of poinpow to then send an alert to update
-    private static boolean canSend = true;
     public static void check() {
         String latestVersion = get();
 
@@ -67,7 +69,7 @@ public class GitHubVersion {
         if (latest.compareTo(current) > 0 && canSend) {
             canSend = false;
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Poinpow v" + latestVersion + " is now available. (click)").styled(style -> style
-                    .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/udu3324/poinpow/releases/latest"))
+                    .withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/udu3324/poinpow/releases/latest")))
                     .withColor(Formatting.DARK_GRAY)
                     .withUnderline(true)));
         }

@@ -12,21 +12,22 @@
 # 📘 Features
 Poinpow is a fabric mod that adds **amazing features** and **makes the player experience 103% better**. (QoL) Features that Minehut locks behind a paywall (ex: removing ads, muting chat, etc.) are in Poinpow.
 
-| Features          | Command                                                                                                |
-|:------------------|:-------------------------------------------------------------------------------------------------------|
-| AutoSkipBarrier   | Automatically skips the transition ads when joining minehut/free servers.                              |
-| BlockLobbyAds     | Blocks player made ads in the lobby.                                                                   |
-| ToggleSpecificAds | Extends the functionality of BlockLobbyAds to block certain ads based on ranks.                        |
-| ChatPhraseFilter  | Filters and blocks messages in chat based on a regex list.                                             |
-| ServerLookup      | A command to see details about a minehut server. Contributed by [BuggyAl](https://github.com/BuggyAl). |
-| MuteLobbyChat     | A command that mutes Minehut's lobby, only allowing `/msg`, joins, and some other stuff.               |
-| HubCommandBack    | Adds back the `/hub` command. It redirects the command `/hub` to `/mh` when necessary.                 |
-| BlockChestAds     | Removes the ads inside the compass server listing in hub.                                              |
-| BlockLobbyMapAds  | Removes the humungous map art that advertises things in lobby.                                         |
-| BlockLobbyWelcome | Blocks the lobby join message that sometimes has an ad in it.                                          |
-| BlockRaids        | Blocks the raid messages in hub.                                                                       |
-| BlockFreeCredits  | Blocks the vote messages encouraging to vote for free credits.                                         |
-| BlockMinehutAds   | Blocks ads from Minehut that are sent in free servers.                                                 |
+| Features             | Command                                                                                                                           |
+|:---------------------|:----------------------------------------------------------------------------------------------------------------------------------|
+| AutoSkipBarrier      | Automatically skips the transition ads when joining minehut/free servers.                                                         |
+| BlockLobbyAds        | Blocks player made ads in the lobby.                                                                                              |
+| ToggleSpecificAds    | Extends the functionality of BlockLobbyAds to block certain ads based on ranks.                                                   |
+| ChatPhraseFilter     | Filters and blocks messages in chat based on a regex list.                                                                        |
+| ~~ServerLookup~~     | ~~A command to see details about a minehut server. Contributed by [BuggyAl](https://github.com/BuggyAl).~~ (use at your own risk) |
+| MuteLobbyChat        | A command that mutes Minehut's lobby, only allowing `/msg`, joins, and some other stuff.                                          |
+| HubCommandBack       | Adds back the `/hub` command. It redirects the command `/hub` to `/mh` when necessary.                                            |
+| BlockChestAds        | Removes the ads inside the compass server listing in hub.                                                                         |
+| BlockLobbyMapAds     | Removes the humungous map art that advertises things in lobby.                                                                    |
+| BlockSoundAds        | Blocks the sound ads played in lobby from the server texture pack.                                                                |
+| BlockLobbyWelcome    | Blocks the lobby join message that sometimes has an ad in it.                                                                     |
+| BlockRaids           | Blocks the raid messages in hub.                                                                                                  |
+| BlockFreeCredits     | Blocks the vote messages encouraging to vote for free credits.                                                                    |
+| BlockMinehutAds      | Blocks ads from Minehut that are sent in free servers.                                                                            |
 
 
 ![screenshot of me using AutoSkipBarrier](https://cdn.modrinth.com/data/zmUzIoT1/images/aaa8cda2723de8979014cde22db46d34c8160553.png)       

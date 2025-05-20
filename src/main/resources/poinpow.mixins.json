@@ -5,13 +5,14 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [],
   "client": [
-    "WorldLoadedMixin",
-    "MapMixin",
-    "ChatMixin",
-    "ClientChatMixin",
     "ActionbarMixin",
+    "BossbarMixin",
+    "ChatMixin",
     "ChestMixin",
-    "BossbarMixin"
+    "ClientChatMixin",
+    "MapMixin",
+    "SoundMixin",
+    "WorldLoadedMixin"
   ],
   "injectors": {
     "defaultRequire": 1
