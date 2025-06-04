@@ -16,7 +16,7 @@ Poinpow is a fabric mod that adds **amazing features** and **makes the player ex
 |:--------------------|:----------------------------------------------------------------------------------------------------------------------------------|
 | AutoSkipBarrier     | Automatically skips the transition ads when joining minehut/free servers.                                                         |
 | BlockLobbyAds       | Blocks player made ads in the lobby.                                                                                              |
-| BlockBoopAnnounce   | Blocks announcements from the boop arena.                                                                                         |****
+| BlockBoopAnnounce   | Blocks announcements from the boop arena.                                                                                         |
 | ToggleSpecificAds   | Extends the functionality of BlockLobbyAds to block certain ads based on ranks.                                                   |
 | ChatPhraseFilter    | Filters and blocks messages in chat based on a regex list.                                                                        |
 | ~~ServerLookup~~    | ~~A command to see details about a minehut server. Contributed by [BuggyAl](https://github.com/BuggyAl).~~ (use at your own risk) |
