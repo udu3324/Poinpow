@@ -42,6 +42,8 @@ public class ChatMixin {
 
         if (BlockRaids.check(chat, ci)) return;
 
+        if (BlockBoopAnnounce.check(chat, ci)) return;
+
         ChatPhraseFilter.check(chat, ci);
     }
 

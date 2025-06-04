@@ -52,6 +52,11 @@ public class Commands {
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockLobbyAds.name, BlockLobbyAds.toggled, true)))
                         .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockLobbyAds.name, BlockLobbyAds.toggled, false))))
 
+                .then(literal(BlockBoopAnnounce.name)
+                        .executes(ctx -> description(ctx.getSource(), BlockBoopAnnounce.name, BlockBoopAnnounce.description, BlockBoopAnnounce.toggled))
+                        .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockBoopAnnounce.name, BlockBoopAnnounce.toggled, true)))
+                        .then(literal("false").executes(ctx -> toggle(ctx.getSource(), BlockBoopAnnounce.name, BlockBoopAnnounce.toggled, false))))
+
                 .then(literal(BlockMinehutAds.name)
                         .executes(ctx -> description(ctx.getSource(), BlockMinehutAds.name, BlockMinehutAds.description, BlockMinehutAds.toggled))
                         .then(literal("true").executes(ctx -> toggle(ctx.getSource(), BlockMinehutAds.name, BlockMinehutAds.toggled, true)))
@@ -150,6 +155,13 @@ public class Commands {
         source.sendFeedback(Text.literal("[" + BlockLobbyAds.toggled + "] " + BlockLobbyAds.name).styled(style -> style
                 .withHoverEvent(new HoverEvent.ShowText(Text.literal(BlockLobbyAds.description + "\n\nClick to Toggle")))
                 .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + BlockLobbyAds.name + " " + !BlockLobbyAds.toggled.get()))
+                .withColor(Formatting.DARK_GRAY)
+        ));
+
+        //block Boop Arena Anouncements
+        source.sendFeedback(Text.literal("[" + BlockBoopAnnounce.toggled + "] " + BlockBoopAnnounce.name).styled(style -> style
+                .withHoverEvent(new HoverEvent.ShowText(Text.literal(BlockBoopAnnounce.description + "\n\nClick to Toggle")))
+                .withClickEvent(new ClickEvent.SuggestCommand("/poinpow " + BlockBoopAnnounce.name + " " + !BlockBoopAnnounce.toggled.get()))
                 .withColor(Formatting.DARK_GRAY)
         ));
 
