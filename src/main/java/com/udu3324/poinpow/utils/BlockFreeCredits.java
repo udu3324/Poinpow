@@ -11,7 +11,7 @@ public class BlockFreeCredits {
     public static String description = "Blocks minehut encouraging /vote when other players do it.";
     public static AtomicBoolean toggled = new AtomicBoolean(true);
 
-    final static Pattern pattern = Pattern.compile("^\\[Minehut] [a-zA-Z0-9_.]{1,16} just got free credits( and gems|) by voting via /vote$");
+    final static Pattern pattern = Pattern.compile("^\\[Minehut] [a-zA-Z0-9_.]{1,16} just got free credits by voting via /vote$");
 
     public static Boolean check(String chat, CallbackInfo ci) {
         // return false if toggled off
