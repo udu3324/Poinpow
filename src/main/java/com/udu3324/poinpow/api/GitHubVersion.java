@@ -8,7 +8,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -22,7 +21,7 @@ public class GitHubVersion {
     //this gets the latest version of poinpow released
     private static String get() {
         try {
-            URL obj = new URL("https://api.github.com/repos/udu3324/poinpow/tags");
+            URL obj = new URI("https://api.github.com/repos/udu3324/poinpow/tags").toURL();
 
             //request for player's friends using uuid url
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -52,9 +51,10 @@ public class GitHubVersion {
             } else {
                 return null;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Poinpow.log.info("Problem while contacting github api!!! {}", e.getLocalizedMessage());
         }
+
         return null;
     }
 
@@ -69,7 +69,7 @@ public class GitHubVersion {
         if (latest.compareTo(current) > 0 && canSend) {
             canSend = false;
             MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("Poinpow v" + latestVersion + " is now available. (click)").styled(style -> style
-                    .withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/udu3324/poinpow/releases/latest")))
+                    .withClickEvent(new ClickEvent.OpenUrl(URI.create("https://modrinth.com/mod/poinpow/versions")))
                     .withColor(Formatting.DARK_GRAY)
                     .withUnderline(true)));
         }
