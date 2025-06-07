@@ -284,7 +284,8 @@ public class Config {
         w.write(System.lineSeparator());
 
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
-        w.write("this_is_a_example");
+        w.write("this_is_a_example" + System.lineSeparator());
+        w.write("\\nMinehut ");
         w.close();
     }
 }
