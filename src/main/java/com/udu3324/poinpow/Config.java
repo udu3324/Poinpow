@@ -238,6 +238,7 @@ public class Config {
             HubCommandBack.toggled.set(Boolean.parseBoolean(getValueFromConfig(HubCommandBack.name)));
             BlockRaids.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockRaids.name)));
             BlockChestAds.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockChestAds.name)));
+            BlockBoopAnnounce.toggled.set(Boolean.parseBoolean(getValueFromConfig(BlockBoopAnnounce.name)));
 
             MuteLobbyChat.toggled = Boolean.parseBoolean(getValueFromConfig(MuteLobbyChat.name));
 
@@ -270,6 +271,7 @@ public class Config {
         w.write(HubCommandBack.name + ": true" + System.lineSeparator());
         w.write(BlockRaids.name + ": true" + System.lineSeparator());
         w.write(BlockChestAds.name + ": true" + System.lineSeparator());
+        w.write(BlockBoopAnnounce.name + ": true" + System.lineSeparator());
         w.write(MuteLobbyChat.name + ": false" + System.lineSeparator());
 
         w.write(name + "_default: false" + System.lineSeparator());
@@ -282,7 +284,8 @@ public class Config {
         w.write(System.lineSeparator());
 
         w.write("# Each line below is regex for ChatPhraseFilter to use." + System.lineSeparator());
-        w.write("this_is_a_example");
+        w.write("this_is_a_example" + System.lineSeparator());
+        w.write("\\nMinehut ");
         w.close();
     }
 }
