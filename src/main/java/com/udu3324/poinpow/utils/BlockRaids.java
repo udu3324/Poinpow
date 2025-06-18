@@ -40,10 +40,6 @@ public class BlockRaids {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        if (text.contains("Raid")) {
-            return true;
-        }
-
-        return false;
+        return text.contains("Raid");
     }
 }

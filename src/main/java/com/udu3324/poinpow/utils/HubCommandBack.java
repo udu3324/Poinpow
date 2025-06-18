@@ -4,9 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
 import com.udu3324.poinpow.Poinpow;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.command.CommandSource;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -31,7 +31,7 @@ public class HubCommandBack {
         ClientPlayNetworkHandler clientPlayNetworkHandler = MinecraftClient.getInstance().getNetworkHandler();
         if (clientPlayNetworkHandler == null) return;
 
-        CommandDispatcher<CommandSource> dispatcher = clientPlayNetworkHandler.getCommandDispatcher();
+        CommandDispatcher<ClientCommandSource> dispatcher = clientPlayNetworkHandler.getCommandDispatcher();
         if (isCommandRegistered(dispatcher, "hub")) return;
 
         // Prevent original message from sending
@@ -43,8 +43,8 @@ public class HubCommandBack {
         player.networkHandler.sendChatCommand("mh");
     }
 
-    public static boolean isCommandRegistered(CommandDispatcher<CommandSource> dispatcher, String commandName) {
-        CommandNode<CommandSource> rootCommand = dispatcher.getRoot();
+    public static boolean isCommandRegistered(CommandDispatcher<ClientCommandSource> dispatcher, String commandName) {
+        CommandNode<ClientCommandSource> rootCommand = dispatcher.getRoot();
 
         // Check if the command is present in the command tree
         return rootCommand.getChild(commandName) != null;

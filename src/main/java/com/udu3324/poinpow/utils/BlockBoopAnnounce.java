@@ -18,7 +18,8 @@ public class BlockBoopAnnounce {
         if (!Poinpow.onMinehut) return false;
 
         //return if it's not a boop message
-        if (!chat.contains(" Boop Arena! Try to boop them out and stay inside to stake your claim on the leaderboard")) return false;
+        if (!chat.contains(" Boop Arena! Try to boop them out and stay inside to stake your claim on the leaderboard"))
+            return false;
 
         Poinpow.log.info("Blocked: {}", chat.replace("\n", ""));
         ci.cancel();

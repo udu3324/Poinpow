@@ -50,11 +50,7 @@ public class BlockLobbyMapAds {
         // return if not on minehut
         if (!Poinpow.onMinehut) return false;
 
-        if (text.contains("[Billboard]")) {
-            return true;
-        }
-
-        return false;
+        return text.contains("[Billboard]");
     }
 
     public static boolean checkSound(PlaySoundS2CPacket packet) {
